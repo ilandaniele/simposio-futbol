@@ -6,16 +6,22 @@ interface ModalProps {
   onClose: () => void
 }
 
+interface FormData {
+  nombre: string
+  email: string
+  telefono?: string
+}
+
 const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormData>()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormData) => {
     console.log(data)
-    onClose() // Cerrar el modal después de enviar
+    onClose()
   }
 
   return (
@@ -90,4 +96,3 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 }
 
 export default Modal
-
