@@ -2,22 +2,81 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import Modal from "./modal"
 import Header from "./components/header"
 import Footer from "./components/footer"
+import Image from "next/image"
 import "./globals.css"
+
+interface DiaInfo {
+  fecha: string
+  hora: string
+}
+
+interface Expositor {
+  nombre: string
+  titulo: string
+  descripcion: string
+  imagen: string
+}
 
 const Home: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [activeDay, setActiveDay] = useState(1)
+  const [slideDirection, setSlideDirection] = useState("")
+  const [isAnimating, setIsAnimating] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const totalDays = 3
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen)
   }
 
-  // Datos de los expositores organizados por día
-  const expositoresPorDia = {
+  const nextDay = () => {
+    if (isAnimating) return
+    setIsAnimating(true)
+    setSlideDirection("slide-left")
+    setTimeout(() => {
+      const newDay = activeDay === totalDays ? 1 : activeDay + 1
+      setActiveDay(newDay)
+      setSlideDirection("slide-in-right")
+      setTimeout(() => setIsAnimating(false), 500)
+    }, 500)
+  }
+
+  const prevDay = () => {
+    if (isAnimating) return
+    setIsAnimating(true)
+    setSlideDirection("slide-right")
+    setTimeout(() => {
+      const newDay = activeDay === 1 ? totalDays : activeDay - 1
+      setActiveDay(newDay)
+      setSlideDirection("slide-in-left")
+      setTimeout(() => setIsAnimating(false), 500)
+    }, 500)
+  }
+
+  const goToDay = (day: number) => {
+    if (day === activeDay || isAnimating) return
+    setIsAnimating(true)
+    const direction = day > activeDay ? "slide-left" : "slide-right"
+    setSlideDirection(direction)
+    setTimeout(() => {
+      setActiveDay(day)
+      setSlideDirection(day > activeDay ? "slide-in-right" : "slide-in-left")
+      setTimeout(() => setIsAnimating(false), 500)
+    }, 500)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isAnimating) nextDay()
+    }, 15000)
+    return () => clearInterval(interval)
+  }, [activeDay, isAnimating])
+
+  const expositoresPorDia: { [key: number]: Expositor[] } = {
     1: [
       {
         nombre: "Aaron Duran",
@@ -77,8 +136,7 @@ const Home: React.FC = () => {
     ],
   }
 
-  // Información de los días
-  const diasInfo = {
+  const diasInfo: { [key: number]: DiaInfo } = {
     1: {
       fecha: "1 de Mayo 2025",
       hora: "A partir de las 19:00 hrs Uruguay",
@@ -111,7 +169,6 @@ const Home: React.FC = () => {
           </p>
         </section>
 
-        {/* CTA Section - Moved up as requested */}
         <section id="inscripcion" className="registration-hero">
           <div className="registration-content">
             <h2>
@@ -131,16 +188,18 @@ const Home: React.FC = () => {
         <section className="collaborations">
           <h3>En Fútbol entre Profes ya hemos colaborado en formaciones con:</h3>
           <div className="sponsor-grid">
-            <img
+            <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-odF1BkDgcYjOnUkLfnlSMsydBKk0b3.png"
               alt="Colaboradores"
               className="sponsor-logo"
+              width={150}
+              height={80}
             />
-            <img src="/placeholder.svg?height=80&width=150" alt="Universidad de Granada" className="sponsor-logo" />
-            <img src="/placeholder.svg?height=80&width=150" alt="Universidad Pontificia" className="sponsor-logo" />
-            <img src="/placeholder.svg?height=80&width=150" alt="European College" className="sponsor-logo" />
-            <img src="/placeholder.svg?height=80&width=150" alt="Club Deportivo" className="sponsor-logo" />
-            <img src="/placeholder.svg?height=80&width=150" alt="Universidad Andrés Bello" className="sponsor-logo" />
+            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad de Granada" className="sponsor-logo" width={150} height={80} />
+            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad Pontificia" className="sponsor-logo" width={150} height={80} />
+            <Image src="/placeholder.svg?height=80&width=150" alt="European College" className="sponsor-logo" width={150} height={80} />
+            <Image src="/placeholder.svg?height=80&width=150" alt="Club Deportivo" className="sponsor-logo" width={150} height={80} />
+            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad Andrés Bello" className="sponsor-logo" width={150} height={80} />
           </div>
         </section>
 
@@ -148,15 +207,11 @@ const Home: React.FC = () => {
           <h3>Cronograma de Expositores</h3>
 
           <div className="day-tabs">
-            <button className={activeDay === 1 ? "active" : ""} onClick={() => setActiveDay(1)}>
-              Día I
-            </button>
-            <button className={activeDay === 2 ? "active" : ""} onClick={() => setActiveDay(2)}>
-              Día II
-            </button>
-            <button className={activeDay === 3 ? "active" : ""} onClick={() => setActiveDay(3)}>
-              Día III
-            </button>
+            {[1, 2, 3].map((day) => (
+              <button key={day} className={activeDay === day ? "active" : ""} onClick={() => goToDay(day)} disabled={isAnimating}>
+                Día {["I", "II", "III"][day - 1]}
+              </button>
+            ))}
           </div>
 
           <div className="day-info">
@@ -165,16 +220,43 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="exhibitor-list">
-            {expositoresPorDia[activeDay].map((expositor, index) => (
-              <div className="exhibitor" key={index}>
-                <img src={expositor.imagen || "/placeholder.svg"} alt={expositor.nombre} />
-                <div className="exhibitor-content">
-                  <h4>{expositor.nombre}</h4>
-                  {expositor.titulo && <p className="exhibitor-title">"{expositor.titulo}"</p>}
-                  {expositor.descripcion && <p className="exhibitor-description">{expositor.descripcion}</p>}
-                </div>
+          <div className="carousel-container">
+            <button className="carousel-arrow prev" onClick={prevDay} aria-label="Día anterior" disabled={isAnimating}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <div className="carousel-wrapper">
+              <div ref={carouselRef} className={`exhibitor-list ${slideDirection}`}>
+                {expositoresPorDia[activeDay].map((expositor, index) => (
+                  <div className="exhibitor" key={index}>
+                    <Image
+                      src={expositor.imagen || "/placeholder.svg"}
+                      alt={expositor.nombre}
+                      width={300}
+                      height={300}
+                    />
+                    <div className="exhibitor-content">
+                      <h4>{expositor.nombre}</h4>
+                      {expositor.titulo && <p className="exhibitor-title">{`"${expositor.titulo}"`}</p>}
+                      {expositor.descripcion && <p className="exhibitor-description">{expositor.descripcion}</p>}
+                    </div>
+                  </div>
+                ))}
               </div>
+            </div>
+
+            <button className="carousel-arrow next" onClick={nextDay} aria-label="Día siguiente" disabled={isAnimating}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div className="carousel-indicators">
+            {Array.from({ length: totalDays }).map((_, index) => (
+              <button key={index} className={activeDay === index + 1 ? "active" : ""} onClick={() => goToDay(index + 1)} aria-label={`Ir al día ${index + 1}`} disabled={isAnimating} />
             ))}
           </div>
         </section>
@@ -183,21 +265,15 @@ const Home: React.FC = () => {
           <h3>Auspiciantes</h3>
           <div className="sponsor-list">
             <div className="sponsor-item">
-              <img src="/logo.png" alt="Ascend" className="sponsor-logo" />
+              <Image src="/logo.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
               <p>Ascend</p>
             </div>
-            <div className="sponsor-item">
-              <img src="/placeholder.svg?height=80&width=150" alt="Auspiciante 2" className="sponsor-logo" />
-              <p>Auspiciante 2</p>
-            </div>
-            <div className="sponsor-item">
-              <img src="/placeholder.svg?height=80&width=150" alt="Auspiciante 3" className="sponsor-logo" />
-              <p>Auspiciante 3</p>
-            </div>
-            <div className="sponsor-item">
-              <img src="/placeholder.svg?height=80&width=150" alt="Auspiciante 4" className="sponsor-logo" />
-              <p>Auspiciante 4</p>
-            </div>
+            {[2, 3, 4].map((n) => (
+              <div className="sponsor-item" key={n}>
+                <Image src={`/placeholder.svg?height=80&width=150`} alt={`Auspiciante ${n}`} className="sponsor-logo" width={150} height={80} />
+                <p>Auspiciante {n}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -208,51 +284,14 @@ const Home: React.FC = () => {
             videos y herramientas para que sepas cómo debes dar tus primeros pasos en el mundo de la Preparación Física
             en Fútbol.
           </p>
-          <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon facebook">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-              <span className="sr-only">Facebook</span>
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-icon instagram">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-              <span className="sr-only">Instagram</span>
-            </a>
-          </div>
+          <div className="social-icons">{/* Íconos aquí */}</div>
         </section>
 
         <Footer />
       </main>
-
       {isModalOpen && <Modal onClose={toggleModal} />}
     </>
   )
 }
 
 export default Home
-

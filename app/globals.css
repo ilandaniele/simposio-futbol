@@ -180,10 +180,11 @@ section h3 {
   background-color: #facc15;
 }
 
+/* Ajustar el tamaño de las tarjetas de expositores */
 .exhibitor-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr); /* Cambiar a 3 columnas fijas */
+  gap: 1.5rem; /* Reducir el espacio entre tarjetas */
   margin-top: 2rem;
 }
 
@@ -196,29 +197,25 @@ section h3 {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.exhibitor:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 100%; /* Asegurar que no exceda el ancho del contenedor */
 }
 
 .exhibitor img {
   width: 100%;
-  height: 250px;
+  height: 220px; /* Reducir la altura de la imagen */
   object-fit: cover;
   border-bottom: 3px solid #facc15;
 }
 
 .exhibitor-content {
-  padding: 1.5rem;
+  padding: 1.25rem; /* Reducir el padding */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .exhibitor h4 {
-  font-size: 1.4rem;
+  font-size: 1.2rem; /* Reducir tamaño de fuente */
   margin-bottom: 0.5rem;
   color: #0a4d8c;
 }
@@ -226,15 +223,33 @@ section h3 {
 .exhibitor-title {
   font-style: italic;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: #333;
-  font-size: 1.1rem;
+  font-size: 1rem; /* Reducir tamaño de fuente */
 }
 
 .exhibitor-description {
   color: #666;
-  line-height: 1.6;
+  line-height: 1.5;
   margin-top: auto;
+  font-size: 0.9rem; /* Reducir tamaño de fuente */
+}
+
+/* Ajustar responsive para pantallas más pequeñas */
+@media (max-width: 992px) {
+  .exhibitor-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 576px) {
+  .exhibitor-list {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+
+  .exhibitor img {
+    height: 200px;
+  }
 }
 
 /* Sección de auspiciantes */
@@ -656,6 +671,142 @@ main {
   font-weight: 500;
 }
 
+/* Contenedor del carrusel */
+.carousel-container {
+  position: relative;
+  margin: 2rem 0;
+  padding: 0 30px; /* Añadir padding para dejar espacio para las flechas */
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Flechas de navegación */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-arrow.prev {
+  left: -20px; /* Cambiado de 10px a -20px para separarlo más */
+}
+
+.carousel-arrow.next {
+  right: -20px; /* Cambiado de 10px a -20px para separarlo más */
+}
+
+/* Animaciones de deslizamiento */
+.exhibitor-list {
+  display: grid;
+  gap: 2.5rem;
+  transition: transform 0.5s ease;
+}
+
+.exhibitor-list.slide-left {
+  animation: slideLeft 0.5s forwards;
+}
+
+.exhibitor-list.slide-right {
+  animation: slideRight 0.5s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%); /* Cambiado de -10% a -100% para un deslizamiento completo */
+    opacity: 0;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%); /* Cambiado de 10% a 100% para un deslizamiento completo */
+    opacity: 0;
+  }
+}
+
+/* Añadir animaciones para la entrada de nuevos elementos */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Añadir clases para las animaciones de entrada */
+.exhibitor-list.slide-in-left {
+  animation: slideInFromLeft 0.5s forwards;
+}
+
+.exhibitor-list.slide-in-right {
+  animation: slideInFromRight 0.5s forwards;
+}
+
+/* Indicadores del carrusel */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background-color: #0a4d8c;
+  transform: scale(1.2);
+}
+
 /* Responsive para el header */
 @media (max-width: 768px) {
   .main-nav ul {
@@ -664,6 +815,27 @@ main {
 
   .logo img {
     height: 40px;
+  }
+
+  .carousel-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .day-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .day-tabs button {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -698,32 +870,15 @@ main {
   .main-header {
     padding-top: calc(3rem + 100px);
   }
-}
 
-@media (max-width: 768px) {
-  .exhibitor-list {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  .carousel-arrow {
+    width: 30px;
+    height: 30px;
   }
 
-  .day-tabs {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .day-tabs button {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 576px) {
-  .exhibitor-list {
-    grid-template-columns: 1fr;
-  }
-
-  .exhibitor img {
-    height: 200px;
+  .carousel-arrow svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
