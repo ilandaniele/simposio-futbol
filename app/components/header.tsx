@@ -1,0 +1,58 @@
+"use client"
+
+import { useState, useEffect } from "react"
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  // Detectar scroll para cambiar estilos del header
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  return (
+    <header className={`fixed-header ${isScrolled ? "scrolled" : ""}`}>
+      <div className="header-container">
+        <div className="logo">
+          <img src="/logo.png" alt="Simposio de Fútbol" />
+        </div>
+        <nav className="main-nav">
+          <ul>
+            <li>
+              <button onClick={() => scrollToSection("inicio")}>Inicio</button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("expositores")}>Expositores</button>
+            </li>
+            <li>
+              <button onClick={() => scrollToSection("inscripcion")} className="nav-cta">
+                Inscríbete
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  )
+}
+
+export default Header
+
