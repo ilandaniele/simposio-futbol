@@ -162,14 +162,18 @@ section h3 {
   padding: 4rem 1rem;
 }
 
-.exhibitors h3 {
+/* Título de sección centrado */
+.section-title {
+  text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
   position: relative;
   padding-bottom: 1rem;
+  display: block;
+  width: 100%;
 }
 
-.exhibitors h3::after {
+.section-title::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -180,14 +184,87 @@ section h3 {
   background-color: #facc15;
 }
 
-/* Ajustar el tamaño de las tarjetas de expositores */
-.exhibitor-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Cambiar a 3 columnas fijas */
-  gap: 1.5rem; /* Reducir el espacio entre tarjetas */
-  margin-top: 2rem;
+/* Estilos para el carrusel */
+.carousel-container {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 1000px;
 }
 
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  transition: transform 0.5s ease;
+}
+
+/* Animaciones de deslizamiento */
+.carousel-content.slide-left {
+  animation: slideLeft 0.5s forwards;
+}
+
+.carousel-content.slide-right {
+  animation: slideRight 0.5s forwards;
+}
+
+.carousel-content.slide-in-left {
+  animation: slideInFromLeft 0.5s forwards;
+}
+
+.carousel-content.slide-in-right {
+  animation: slideInFromRight 0.5s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Tarjetas de expositores */
 .exhibitor {
   background-color: white;
   border-radius: 10px;
@@ -196,9 +273,9 @@ section h3 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  max-width: 100%; /* Asegurar que no exceda el ancho del contenedor */
-  cursor: pointer; /* Añadir cursor pointer para indicar que es clicable */
+  width: 300px;
+  max-width: 100%;
+  cursor: pointer;
 }
 
 .exhibitor:hover {
@@ -208,20 +285,20 @@ section h3 {
 
 .exhibitor img {
   width: 100%;
-  height: 220px; /* Reducir la altura de la imagen */
+  height: 220px;
   object-fit: cover;
   border-bottom: 3px solid #facc15;
 }
 
 .exhibitor-content {
-  padding: 1.25rem; /* Reducir el padding */
+  padding: 1.25rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .exhibitor h4 {
-  font-size: 1.2rem; /* Reducir tamaño de fuente */
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: #0a4d8c;
 }
@@ -231,31 +308,119 @@ section h3 {
   font-weight: 500;
   margin-bottom: 0.75rem;
   color: #333;
-  font-size: 1rem; /* Reducir tamaño de fuente */
+  font-size: 1rem;
 }
 
 .exhibitor-description {
   color: #666;
   line-height: 1.5;
   margin-top: auto;
-  font-size: 0.9rem; /* Reducir tamaño de fuente */
+  font-size: 0.9rem;
 }
 
-/* Ajustar responsive para pantallas más pequeñas */
-@media (max-width: 992px) {
-  .exhibitor-list {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
-  }
+/* Flechas de navegación */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 576px) {
-  .exhibitor-list {
-    grid-template-columns: 1fr; /* 1 columna en móviles */
-  }
+.carousel-arrow:hover {
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
 
-  .exhibitor img {
-    height: 200px;
-  }
+.carousel-arrow.prev {
+  left: -20px;
+}
+
+.carousel-arrow.next {
+  right: -20px;
+}
+
+/* Indicadores del carrusel */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.carousel-indicators button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators button.active {
+  background-color: #0a4d8c;
+  transform: scale(1.2);
+}
+
+/* Estilos para las pestañas de días */
+.day-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.day-tabs button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.day-tabs button:hover:not(.active) {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.day-tabs button.active {
+  background-color: #0a4d8c;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.day-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.day-date {
+  font-size: 1.2rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Quitar el subrayado de los enlaces de expositores */
+.exhibitor-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 /* Sección de auspiciantes */
@@ -369,8 +534,9 @@ section h3 {
   width: 100%;
   max-width: 500px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  overflow: auto;
   animation: fadeIn 0.3s ease-out forwards;
+  max-height: 90vh;
 }
 
 @keyframes fadeIn {
@@ -387,24 +553,25 @@ section h3 {
 .modal-header {
   background: linear-gradient(to right, #0a4d8c, #0070f3);
   color: white;
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative;
 }
 
 .modal-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .modal-header p {
-  margin: 0.5rem 0 0;
+  margin: 0.3rem 0 0;
   opacity: 0.8;
+  font-size: 0.9rem;
 }
 
 .close-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.7rem;
+  right: 0.7rem;
   background: none;
   border: none;
   color: white;
@@ -412,28 +579,39 @@ section h3 {
 }
 
 .modal-form {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
-.form-group input:focus {
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
   outline: none;
   border-color: #0070f3;
   box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
@@ -441,34 +619,36 @@ section h3 {
 
 .error-message {
   color: #e53e3e;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
 }
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .cancel-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 4px;
   color: #333;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .submit-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   background-color: #0070f3;
   border: none;
   border-radius: 4px;
   color: white;
   font-weight: 500;
   cursor: pointer;
+  font-size: 0.9rem;
 }
 
 .submit-button:hover {
@@ -489,12 +669,24 @@ section h3 {
     font-size: 2rem;
   }
 
-  .exhibitor-list {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  .carousel-content {
+    flex-direction: column;
+    align-items: center;
   }
 
   .sponsor-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .day-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .day-tabs button {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -629,7 +821,7 @@ section h3 {
 
 /* Ajustar el padding-top del main para compensar el header fijo */
 main {
-  padding-top: 70px; /* Ajustar según la altura del header */
+  padding-top: 70px;
 }
 
 /* Ajustar el primer section para que no quede oculto por el header */
@@ -637,511 +829,11 @@ main {
   padding-top: calc(3rem + 70px);
 }
 
-/* Estilos para las pestañas de días */
-.day-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.day-tabs button {
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Modificar el hover para que no se confunda con el active */
-.day-tabs button:hover:not(.active) {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Estilo para el botón activo similar al botón de inscripción */
-.day-tabs button.active {
-  background-color: #0a4d8c;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive para los botones de día */
-@media (max-width: 768px) {
-  .day-tabs {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .day-tabs button {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-.day-info {
+/* Estilos para la página de detalle del expositor */
+.expositor-header-container {
+  margin: 0 auto 2rem;
   text-align: center;
-  margin-bottom: 2rem;
-}
-
-.day-date {
-  font-size: 1.2rem;
-  color: #555;
-  font-weight: 500;
-}
-
-/* Contenedor del carrusel */
-.carousel-container {
-  position: relative;
-  margin: 2rem 0;
-  padding: 0 30px; /* Añadir padding para dejar espacio para las flechas */
-}
-
-.carousel-wrapper {
-  overflow: hidden;
-  position: relative;
-}
-
-/* Flechas de navegación */
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.carousel-arrow:hover {
-  background-color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.carousel-arrow.prev {
-  left: -20px; /* Cambiado de 10px a -20px para separarlo más */
-}
-
-.carousel-arrow.next {
-  right: -20px; /* Cambiado de 10px a -20px para separarlo más */
-}
-
-/* Animaciones de deslizamiento */
-.exhibitor-list {
-  display: grid;
-  gap: 2.5rem;
-  transition: transform 0.5s ease;
-}
-
-.exhibitor-list.slide-left {
-  animation: slideLeft 0.5s forwards;
-}
-
-.exhibitor-list.slide-right {
-  animation: slideRight 0.5s forwards;
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%); /* Cambiado de -10% a -100% para un deslizamiento completo */
-    opacity: 0;
-  }
-}
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%); /* Cambiado de 10% a 100% para un deslizamiento completo */
-    opacity: 0;
-  }
-}
-
-/* Añadir animaciones para la entrada de nuevos elementos */
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Añadir clases para las animaciones de entrada */
-.exhibitor-list.slide-in-left {
-  animation: slideInFromLeft 0.5s forwards;
-}
-
-.exhibitor-list.slide-in-right {
-  animation: slideInFromRight 0.5s forwards;
-}
-
-/* Indicadores del carrusel */
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 2rem;
-}
-
-.carousel-indicators button {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #ddd;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.carousel-indicators button.active {
-  background-color: #0a4d8c;
-  transform: scale(1.2);
-}
-
-/* Responsive para el header */
-@media (max-width: 768px) {
-  .main-nav ul {
-    gap: 1rem;
-  }
-
-  .logo img {
-    height: 40px;
-  }
-
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-  }
-
-  .carousel-arrow svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .day-tabs {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .day-tabs button {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 576px) {
-  .header-container {
-    flex-direction: column;
-    padding: 0.5rem;
-  }
-
-  .main-nav {
-    margin-top: 0.5rem;
-  }
-
-  .main-nav ul {
-    gap: 0.5rem;
-  }
-
-  .main-nav button {
-    font-size: 0.9rem;
-    padding: 0.3rem 0.5rem;
-  }
-
-  .nav-cta {
-    padding: 0.3rem 0.8rem !important;
-  }
-
-  /* Ajustar el padding-top del main */
-  main {
-    padding-top: 100px;
-  }
-
-  .main-header {
-    padding-top: calc(3rem + 100px);
-  }
-
-  .carousel-arrow {
-    width: 30px;
-    height: 30px;
-  }
-
-  .carousel-arrow svg {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-/* Añadir estos estilos para las nuevas secciones */
-
-/* Sección de certificación */
-.certification {
-  background-color: white;
-  padding: 4rem 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin: 2rem auto;
-}
-
-.certification-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.certification-info {
-  flex: 1;
-  min-width: 300px;
-}
-
-.certification-image {
-  flex: 1;
-  min-width: 300px;
-  display: flex;
-  justify-content: center;
-}
-
-.certificate-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.certification h4 {
-  color: #0a4d8c;
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.certification ul {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.certification li {
-  margin-bottom: 0.5rem;
-}
-
-.deadline-info {
-  background-color: #f8f9fa;
-  padding: 1rem;
-  border-radius: 5px;
-  border-left: 4px solid #facc15;
-  margin-top: 1.5rem;
-}
-
-/* Sección de biografías */
-.bio-section {
-  background-color: #f8f9fa;
-  padding: 4rem 1rem;
-}
-
-.bio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.bio-card {
-  background-color: white;
-  border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.bio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.bio-card h4 {
-  color: #0a4d8c;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #facc15;
-  padding-bottom: 0.5rem;
-}
-
-.bio-card p {
-  color: #555;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* Responsive para las nuevas secciones */
-@media (max-width: 768px) {
-  .certification-content {
-    flex-direction: column;
-  }
-
-  .bio-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Estilos para la página de detalle del expositor */
-.expositor-detail-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.expositor-back-button {
-  display: inline-flex;
-  align-items: center;
-  color: #0a4d8c;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  transition: color 0.3s ease;
-}
-
-.expositor-back-button:hover {
-  color: #facc15;
-}
-
-.expositor-back-button svg {
-  margin-right: 0.5rem;
-}
-
-.expositor-card {
-  background-color: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.expositor-header {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.expositor-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-@media (min-width: 768px) {
-  .expositor-image {
-    width: 40%;
-    height: auto;
-  }
-}
-
-.expositor-info {
-  padding: 2rem;
-  flex: 1;
-}
-
-.expositor-name {
-  font-size: 2rem;
-  color: #0a4d8c;
-  margin-bottom: 0.5rem;
-}
-
-.expositor-title {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-.expositor-bio {
-  color: #666;
-  line-height: 1.8;
-}
-
-.expositor-bio p {
-  margin-bottom: 1rem;
-}
-
-.expositor-social {
-  margin-top: 2rem;
-}
-
-.expositor-social a {
-  display: inline-flex;
-  align-items: center;
-  background-color: #facc15;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.expositor-social a:hover {
-  background-color: #fde047;
-  transform: translateY(-2px);
-}
-
-.expositor-social a svg {
-  margin-right: 0.5rem;
-}
-
-/* Quitar el subrayado de los enlaces de expositores */
-.exhibitor-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-/* Estilos para la página de detalle del expositor */
-.volver-link {
-  display: inline-flex;
-  align-items: center;
-  color: #0a4d8c;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.volver-link:hover {
-  color: #facc15;
+  max-width: 800px;
 }
 
 .expositor-nombre {
@@ -1154,7 +846,28 @@ main {
   font-size: 1.5rem;
   font-style: italic;
   color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Botón de volver */
+.volver-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #0a4d8c;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   margin-bottom: 2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+  background-color: #0a4d8c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .expositor-container {
@@ -1197,7 +910,20 @@ main {
   margin-top: 2rem;
 }
 
-.instagram-link {
+.flex {
+  display: flex;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+/* Botón de Instagram */
+.instagram-btn {
   display: inline-flex;
   align-items: center;
   background-color: #facc15;
@@ -1209,8 +935,27 @@ main {
   transition: all 0.3s ease;
 }
 
-.instagram-link:hover {
+.instagram-btn:hover {
   background-color: #fde047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de LinkedIn */
+.linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #0077b5;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.linkedin-btn:hover {
+  background-color: #0069a6;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -1262,7 +1007,48 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
+  .header-container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .main-nav {
+    margin-top: 0.5rem;
+  }
+
+  .main-nav ul {
+    gap: 0.5rem;
+  }
+
+  .main-nav button {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .nav-cta {
+    padding: 0.3rem 0.8rem !important;
+  }
+
+  /* Ajustar el padding-top del main */
+  main {
+    padding-top: 100px;
+  }
+
+  .main-header {
+    padding-top: calc(3rem + 100px);
+  }
+
+  .carousel-arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .expositor-container {
     flex-direction: column;
   }
@@ -1276,127 +1062,118 @@ main {
   }
 }
 
-/* Añadir estos estilos para los cambios solicitados */
-
-/* Estilos para el título de Cronograma de Expositores */
-.cronograma-titulo {
-  position: relative;
-  display: inline-block;
-  margin: 0 auto 2rem;
-  padding-bottom: 1rem;
+/* Utilidades */
+.w-full {
+  width: 100%;
 }
 
-.cronograma-titulo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background-color: #facc15;
+.border {
+  border-width: 1px;
 }
 
-/* Estilos para los botones de días */
-.day-tabs button {
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.border-gray-300 {
+  border-color: #d1d5db;
 }
 
-.day-tabs button:hover {
-  background-color: #0a4d8c;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.rounded-md {
+  border-radius: 0.375rem;
 }
 
-.day-tabs button.active {
-  background-color: #0a4d8c;
-  color: white;
+.p-3 {
+  padding: 0.75rem;
 }
 
-/* Estilos para la página de detalle del expositor */
-.expositor-header-container {
-  margin: 0 auto 2rem;
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.text-center {
   text-align: center;
-  max-width: 800px;
 }
 
-.expositor-nombre {
-  font-size: 2.5rem;
+/* Sección de certificación */
+.certification {
+  background-color: white;
+  padding: 4rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+}
+
+.certification-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.certification-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.certification-subtitle {
   color: #0a4d8c;
-  margin-bottom: 0.5rem;
-}
-
-.expositor-titulo {
-  font-size: 1.5rem;
-  font-style: italic;
-  color: #555;
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
 
-/* Botón de volver */
-.volver-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: #f0f0f0;
-  color: #0a4d8c;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
+.certification-list {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.certification-list li {
+  margin-bottom: 0.5rem;
+}
+
+.certification-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.certificate-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.deadline-info {
+  background-color: #f8f9fa;
+  padding: 1rem;
   border-radius: 5px;
-  margin-bottom: 2rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  border-left: 4px solid #facc15;
+  margin-top: 1.5rem;
 }
 
-.volver-btn:hover {
-  background-color: #0a4d8c;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Botón de Instagram */
-.instagram-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: #facc15;
-  color: #000;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.instagram-btn:hover {
-  background-color: #fde047;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Añadir estilos para el botón de LinkedIn */
-.linkedin-btn {
-  display: inline-flex;
-  align-items: center;
-  background-color: #0077b5;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.linkedin-btn:hover {
-  background-color: #0069a6;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}

@@ -22,6 +22,13 @@ interface Expositor {
   imagen: string
 }
 
+interface Organizador {
+  nombre: string
+  titulo: string
+  descripcion: string
+  imagen: string
+}
+
 const Home: React.FC = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [activeDay, setActiveDay] = useState(1)
@@ -80,12 +87,6 @@ const Home: React.FC = () => {
   const expositoresPorDia: { [key: number]: Expositor[] } = {
     1: [
       {
-        nombre: "Aaron Duran",
-        titulo: "Organizador y Moderador",
-        descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Aaron+Duran",
-      },
-      {
         nombre: "Gabriel Añón",
         titulo: "Introducción al Modelo de Juego",
         descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
@@ -129,6 +130,21 @@ const Home: React.FC = () => {
       },
     ],
   }
+
+  const organizadores: Organizador[] = [
+    {
+      nombre: "Aaron Duran",
+      titulo: "Organizador y Moderador",
+      descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
+      imagen: "/placeholder.svg?height=300&width=300&text=Aaron+Duran",
+    },
+    {
+      nombre: "Director del Instituto Terciario",
+      titulo: "Director",
+      descripcion: "Director del Instituto Técnico Profesional de la Asociación Uruguaya de Entrenadores de Fútbol.",
+      imagen: "/placeholder.svg?height=300&width=300&text=Director+Instituto",
+    },
+  ]
 
   const diasInfo: { [key: number]: DiaInfo } = {
     1: {
@@ -194,13 +210,13 @@ const Home: React.FC = () => {
           <h3>Certificación y Modalidades de Participación</h3>
           <div className="certification-content">
             <div className="certification-info">
-              <h4>Certificado de Participación</h4>
+              <h4 className="certification-subtitle">Certificado de Participación</h4>
               <p>
                 Todos los participantes inscritos recibirán un certificado validado por el Instituto Técnico Profesional
                 de la Asociación Uruguaya de Entrenadores de Fútbol, válido para incluir en tu CV profesional.
               </p>
-              <h4>Modalidades de Participación</h4>
-              <ul>
+              <h4 className="certification-subtitle">Modalidades de Participación</h4>
+              <ul className="certification-list">
                 <li>
                   <strong>Zoom:</strong> Cupos limitados (80 aproximadamente). Los participantes podrán interactuar
                   directamente con los expositores.
@@ -210,9 +226,11 @@ const Home: React.FC = () => {
                   inscribirse a través del formulario.
                 </li>
               </ul>
-              <p className="deadline-info">
-                <strong>Fecha límite de inscripción:</strong> 24 horas antes del inicio del simposio.
-              </p>
+              <div className="deadline-info">
+                <p>
+                  <strong>Fecha límite de inscripción:</strong> 24 horas antes del inicio del simposio.
+                </p>
+              </div>
             </div>
             <div className="certification-image">
               <Image
@@ -229,13 +247,7 @@ const Home: React.FC = () => {
         <section className="collaborations">
           <h3>Instituciones Colaboradoras</h3>
           <div className="sponsor-grid">
-            <Image
-              src="/images/itp.png"
-              alt="Colaboradores"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
+            <Image src="/images/itp.png" alt="Colaboradores" className="sponsor-logo" width={150} height={80} />
             <Image
               src="/placeholder.svg?height=80&width=150"
               alt="Universidad de Granada"
@@ -274,8 +286,46 @@ const Home: React.FC = () => {
           </div>
         </section>
 
+        <section id="organizadores" className="exhibitors">
+          <h3 className="section-title">Organizadores</h3>
+          <div className="carousel-container">
+            <div className="carousel-wrapper">
+              <div className="carousel-content">
+                {organizadores.map((organizador, index) => {
+                  // Crear un ID para el organizador basado en su nombre
+                  const organizadorId = organizador.nombre
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+
+                  return (
+                    <Link href={`/expositor/${organizadorId}`} key={index} className="exhibitor-link">
+                      <div className="exhibitor">
+                        <img
+                          src={organizador.imagen || "/placeholder.svg"}
+                          alt={organizador.nombre}
+                          width={300}
+                          height={300}
+                        />
+                        <div className="exhibitor-content">
+                          <h4>{organizador.nombre}</h4>
+                          {organizador.titulo && <p className="exhibitor-title">{`"${organizador.titulo}"`}</p>}
+                          {organizador.descripcion && (
+                            <p className="exhibitor-description">{organizador.descripcion}</p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="expositores" className="exhibitors">
-          <h3 className="cronograma-titulo">Cronograma de Expositores</h3>
+          <h3 className="section-title">Cronograma de Expositores</h3>
 
           <div className="day-tabs">
             {[1, 2, 3].map((day) => (
@@ -314,7 +364,7 @@ const Home: React.FC = () => {
             </button>
 
             <div className="carousel-wrapper">
-              <div ref={carouselRef} className={`exhibitor-list ${slideDirection}`}>
+              <div ref={carouselRef} className={`carousel-content ${slideDirection}`}>
                 {expositoresPorDia[activeDay].map((expositor, index) => {
                   // Crear un ID para el expositor basado en su nombre
                   const expositorId = expositor.nombre
@@ -378,8 +428,7 @@ const Home: React.FC = () => {
           <h3>Auspiciantes</h3>
           <div className="sponsor-list">
             <div className="sponsor-item">
-              <Image src="/logo.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
-              <p>Ascend</p>
+              <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
             </div>
             {[2, 3, 4].map((n) => (
               <div className="sponsor-item" key={n}>
@@ -390,7 +439,6 @@ const Home: React.FC = () => {
                   width={150}
                   height={80}
                 />
-                <p>Auspiciante {n}</p>
               </div>
             ))}
           </div>

@@ -10,6 +10,7 @@ interface FormData {
   nombre: string
   email: string
   telefono?: string
+  puesto?: string
   motivacion?: string
 }
 
@@ -27,13 +28,13 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
+      <div className="modal-content max-h-[90vh] overflow-y-auto">
         <div className="modal-header">
           <button onClick={onClose} className="close-button" aria-label="Cerrar">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -79,7 +80,23 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
           <div className="form-group">
             <label htmlFor="telefono">Teléfono:</label>
-            <input id="telefono" type="tel" {...register("telefono")} placeholder="+1234567890" />
+            <input
+              id="telefono"
+              type="tel"
+              {...register("telefono", {
+                pattern: {
+                  value: /^[0-9+\-\s()]*$/,
+                  message: "Por favor ingresa un número de teléfono válido",
+                },
+              })}
+              placeholder="+1234567890"
+            />
+            {errors.telefono && <p className="error-message">{errors.telefono.message}</p>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="puesto">Puesto de trabajo:</label>
+            <input id="puesto" {...register("puesto")} placeholder="Ej: Entrenador, Preparador físico, Estudiante" />
           </div>
 
           <div className="form-group">
@@ -90,6 +107,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               placeholder="Cuéntanos por qué quieres participar en este simposio"
               rows={4}
               className="w-full p-3 border border-gray-300 rounded-md"
+              style={{ width: "100%", height: "80px" }}
             ></textarea>
           </div>
 
@@ -108,3 +126,4 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 }
 
 export default Modal
+
