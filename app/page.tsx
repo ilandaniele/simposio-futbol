@@ -230,7 +230,7 @@ const Home: React.FC = () => {
           <h3>Instituciones Colaboradoras</h3>
           <div className="sponsor-grid">
             <Image
-              src="images/itp.png"
+              src="/images/itp.png"
               alt="Colaboradores"
               className="sponsor-logo"
               width={150}
