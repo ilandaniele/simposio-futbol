@@ -141,7 +141,7 @@ export default function ExpositorPage() {
 
           <div className="expositor-header-container">
             <h1 className="expositor-nombre">{expositor.nombre}</h1>
-            <h2 className="expositor-titulo">"{expositor.titulo}"</h2>
+            <h2 className="expositor-titulo">{`"${expositor.titulo}"`}</h2>
           </div>
 
           <div className="expositor-container">
@@ -195,7 +195,7 @@ export default function ExpositorPage() {
             <p>
               {expositor.titulo ? (
                 <>
-                  <span className="ponencia-titulo">"{expositor.titulo}"</span> - Esta ponencia forma parte del I
+                  <span className="ponencia-titulo">{`"${expositor.titulo}"`}</span> - Esta ponencia forma parte del I
                   Simposio Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.
                 </>
               ) : (
