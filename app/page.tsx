@@ -97,7 +97,7 @@ const Home: React.FC = () => {
         nombre: "Enrique Cesana",
         titulo: "Entrenamiento y Cultura Futbolística Sudamericana: Un Método con Identidad",
         descripcion: "Preparador Físico - Entrenador selecciones juveniles Argentina. Director y creador de GRUPOEKPO.",
-        imagen: "/images/enrique-cesana.jpg",
+        imagen: "/images/enrique-cesana.png",
       },
       {
         nombre: "Miguel Torres",

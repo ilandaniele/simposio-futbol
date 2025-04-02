@@ -41,7 +41,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     nombre: "Enrique Cesana",
     titulo: "Entrenamiento y Cultura Futbolística Sudamericana: Un Método con Identidad",
     descripcion: "Preparador Físico - Entrenador selecciones juveniles Argentina. Director y creador de GRUPOEKPO.",
-    imagen: "/images/enrique-cesana.jpg",
+    imagen: "/images/enrique-cesana-2.png",
     biografia:
       "Destacado profesor de educación física y preparador físico argentino, reconocido por su amplia trayectoria en el ámbito del fútbol formativo y profesional. Graduado del Instituto Superior de Educación Física Nº 11 (ISEF Nº 11), Cesana ha dedicado su carrera al desarrollo y la preparación de futbolistas en diversas categorías.\n\nActualmente, se desempeña como preparador físico de la Selección Argentina Sub-17, Sub 20, colaborando estrechamente con la Asociación del Fútbol Argentino (AFA) en la formación de jóvenes talentos. Además, es el fundador y director de GrupoEkipo, una organización dedicada a la capacitación y formación de entrenadores y preparadores físicos.\n\nA lo largo de su carrera, ha ocupado diversos roles en el ámbito futbolístico, incluyendo Coordinador del Departamento de Profesores de Educación Física de la Fundación Leo Messi en Rosario y Director Deportivo del Club Tiro Federal. Ha trabajado como Preparador Físico en equipos como Rosario Central, Belgrano de Córdoba, Oriente Petrolero, Wilsterman, Guabirá y Deportivo Aurora.",
     instagram: "https://www.instagram.com/quiquecesana/",
@@ -81,7 +81,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Construcción de un Modelo de Juego: Un Camino de Aprendizaje y Experiencia",
     descripcion:
       "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GEF de Conmebol.",
-    imagen: "/images/gerardo-pelusso-1.jpg",
+    imagen: "/images/gerardo-pelusso-2.jpg",
     biografia:
       "Oriundo de Florida, Uruguay. Inició su carrera como entrenador en 1984 con Emelec. Su trayectoria incluye la dirección técnica de grandes equipos en Uruguay, Perú, Chile, Paraguay y Colombia. Entre sus logros más destacados se encuentran: Campeón del Campeonato Uruguayo de Primera División en 2004 con Danubio FC, Campeón del Torneo Peruano en 2006 con Alianza Lima, Campeón del Campeonato Uruguayo de Primera División 2008-09 con Nacional, Semifinales Copa Libertadores 2010 con Universidad de Chile, Campeón del Torneo Clausura en 2011 con Olimpia, y Campeón de la Copa Sudamericana en 2015 con Independiente Santa Fe.\n\nEn 2020, a los 66 años, Pelusso anunció su retiro de la dirección técnica, dejando una huella importante e imborrable como gran entrenador en el fútbol sudamericano. Actualmente, comparte su experiencia y conocimientos en favor del desarrollo en el fútbol sudamericano como embajador de Conmebol y responsable del GET (Grupo Estudios Técnicos) de Conmebol.",
     instagram: "https://www.instagram.com/gerardopelussook/",
