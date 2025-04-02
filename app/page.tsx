@@ -89,7 +89,7 @@ const Home: React.FC = () => {
         nombre: "Gabriel Añón",
         titulo: "Introducción al Modelo de Juego",
         descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Gabriel+Añón",
+        imagen: "/images/gabriel-anon.jpg",
       },
     ],
     2: [
@@ -97,20 +97,20 @@ const Home: React.FC = () => {
         nombre: "Enrique Cesana",
         titulo: "Entrenamiento y Cultura Futbolística Sudamericana: Un Método con Identidad",
         descripcion: "Preparador Físico - Entrenador selecciones juveniles Argentina. Director y creador de GRUPOEKPO.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Enrique+Cesana",
+        imagen: "/images/enrique-cesana.jpg",
       },
       {
         nombre: "Miguel Torres",
         titulo: "Entrenamiento del Portero Adaptado al Modelo de Juego",
         descripcion: "Entrenador de Arqueros fútbol formativo Universidad de Chile. Licencia Pro ANFP Chile.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Miguel+Torres",
+        imagen: "/images/miguel-torres.jpg",
       },
       {
         nombre: "Alejandro Garay",
         titulo: "Modelo de Juego en Selecciones Nacionales Juveniles",
         descripcion:
           "Entrenador selecciones juveniles Uruguay, Coordinador divisiones inferiores Montevideo Wanderers, Instructor Conmebol.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Alejandro+Garay",
+        imagen: "/images/alejandro-garay.jpg",
       },
     ],
     3: [
@@ -125,7 +125,7 @@ const Home: React.FC = () => {
         titulo: "Construcción de un Modelo de Juego: Un Camino de Aprendizaje y Experiencia",
         descripcion:
           "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GEF de Conmebol.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Gerardo+Pelusso",
+        imagen: "/images/gerardo-pelusso-1.jpg",
       },
     ],
   }
@@ -216,7 +216,7 @@ const Home: React.FC = () => {
             </div>
             <div className="certification-image">
               <Image
-                src="/placeholder.svg?height=300&width=400&text=Certificado+de+Participación"
+                src="/images/certificado.jpg"
                 alt="Certificado de Participación"
                 width={400}
                 height={300}
@@ -326,7 +326,7 @@ const Home: React.FC = () => {
                   return (
                     <Link href={`/expositor/${expositorId}`} key={index} className="exhibitor-link">
                       <div className="exhibitor">
-                        <Image
+                        <img
                           src={expositor.imagen || "/placeholder.svg"}
                           alt={expositor.nombre}
                           width={300}
