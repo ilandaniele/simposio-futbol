@@ -6,16 +6,23 @@ interface ModalProps {
   onClose: () => void
 }
 
+interface FormData {
+  nombre: string
+  email: string
+  telefono?: string
+  motivacion?: string
+}
+
 const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormData>()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormData) => {
     console.log(data)
-    onClose() // Cerrar el modal después de enviar
+    onClose()
   }
 
   return (
@@ -34,8 +41,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
           <h2>Formulario de Inscripción</h2>
@@ -50,7 +57,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               {...register("nombre", { required: "Este campo es obligatorio" })}
               placeholder="Ingresa tu nombre"
             />
-            {errors.nombre && <p className="error-message">{errors.nombre.message as string}</p>}
+            {errors.nombre && <p className="error-message">{errors.nombre.message}</p>}
           </div>
 
           <div className="form-group">
@@ -67,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
               })}
               placeholder="tu@email.com"
             />
-            {errors.email && <p className="error-message">{errors.email.message as string}</p>}
+            {errors.email && <p className="error-message">{errors.email.message}</p>}
           </div>
 
           <div className="form-group">
@@ -101,4 +108,3 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 }
 
 export default Modal
-
