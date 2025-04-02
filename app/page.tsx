@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import Link from "next/link"
 
 import { useState, useEffect, useRef } from "react"
 import Modal from "./modal"
@@ -90,13 +91,6 @@ const Home: React.FC = () => {
         descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
         imagen: "/placeholder.svg?height=300&width=300&text=Gabriel+Añón",
       },
-      {
-        nombre: "Gaston Mendoza",
-        titulo: "Planificación y Entrenamiento Adaptado al Modelo de Juego",
-        descripcion:
-          "Preparador físico con amplia experiencia en clubes como Olimpia, Pachuca, Unión Española, Arsenal, Godoy Cruz, Libertad, Querétaro. Participó en los Juegos Olímpicos de Atenas 2004 con la selección paraguaya.",
-        imagen: "/placeholder.svg?height=300&width=300&text=Gaston+Mendoza",
-      },
     ],
     2: [
       {
@@ -161,11 +155,22 @@ const Home: React.FC = () => {
         </section>
 
         <section className="intro">
-          <h3>Los preparadores físicos que llegan a vivir del fútbol …¿Qué hacen diferente al resto?</h3>
-          <p>Aprende técnicas, diseña tareas, planifica temporadas.</p>
+          <h3>El fútbol sudamericano: pasión, creatividad y talento</h3>
           <p>
-            Dentro de la Academia de Preparadores Físicos te enseñaré todo lo que necesitas para diseñar, planificar y
-            estructurar la preparación física de tu equipo.
+            El fútbol sudamericano siempre ha sido sinónimo de pasión, creatividad y talento. Sin embargo, en un mundo
+            cada vez más competitivo, es fundamental evolucionar y consolidar un modelo de juego que combine nuestra
+            identidad histórica con estrategias modernas.
+          </p>
+          <p>
+            Este simposio surge de la necesidad de brindar a los entrenadores un camino claro para estructurar y aplicar
+            sus ideas en el desarrollo del juego. Cuando un entrenador obtiene su titulación, posee una gran cantidad de
+            conocimientos teóricos y conceptos en su mente, pero muchas veces enfrenta dificultades para traducirlos en
+            una metodología práctica y coherente.
+          </p>
+          <p>
+            Este simposio reúne a profesionales expertos en todas las áreas del fútbol, para compartir conocimientos y
+            experiencias con el fin de fortalecer el desarrollo del modelo de juego propio de nuestra región
+            sudamericana.
           </p>
         </section>
 
@@ -185,8 +190,44 @@ const Home: React.FC = () => {
           </div>
         </section>
 
+        <section className="certification">
+          <h3>Certificación y Modalidades de Participación</h3>
+          <div className="certification-content">
+            <div className="certification-info">
+              <h4>Certificado de Participación</h4>
+              <p>
+                Todos los participantes inscritos recibirán un certificado validado por el Instituto Técnico Profesional
+                de la Asociación Uruguaya de Entrenadores de Fútbol, válido para incluir en tu CV profesional.
+              </p>
+              <h4>Modalidades de Participación</h4>
+              <ul>
+                <li>
+                  <strong>Zoom:</strong> Cupos limitados (80 aproximadamente). Los participantes podrán interactuar
+                  directamente con los expositores.
+                </li>
+                <li>
+                  <strong>YouTube:</strong> Transmisión abierta a todo público. Para obtener el certificado es necesario
+                  inscribirse a través del formulario.
+                </li>
+              </ul>
+              <p className="deadline-info">
+                <strong>Fecha límite de inscripción:</strong> 24 horas antes del inicio del simposio.
+              </p>
+            </div>
+            <div className="certification-image">
+              <Image
+                src="/placeholder.svg?height=300&width=400&text=Certificado+de+Participación"
+                alt="Certificado de Participación"
+                width={400}
+                height={300}
+                className="certificate-img"
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="collaborations">
-          <h3>En Fútbol entre Profes ya hemos colaborado en formaciones con:</h3>
+          <h3>Instituciones Colaboradoras</h3>
           <div className="sponsor-grid">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-odF1BkDgcYjOnUkLfnlSMsydBKk0b3.png"
@@ -195,20 +236,55 @@ const Home: React.FC = () => {
               width={150}
               height={80}
             />
-            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad de Granada" className="sponsor-logo" width={150} height={80} />
-            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad Pontificia" className="sponsor-logo" width={150} height={80} />
-            <Image src="/placeholder.svg?height=80&width=150" alt="European College" className="sponsor-logo" width={150} height={80} />
-            <Image src="/placeholder.svg?height=80&width=150" alt="Club Deportivo" className="sponsor-logo" width={150} height={80} />
-            <Image src="/placeholder.svg?height=80&width=150" alt="Universidad Andrés Bello" className="sponsor-logo" width={150} height={80} />
+            <Image
+              src="/placeholder.svg?height=80&width=150"
+              alt="Universidad de Granada"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
+            <Image
+              src="/placeholder.svg?height=80&width=150"
+              alt="Universidad Pontificia"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
+            <Image
+              src="/placeholder.svg?height=80&width=150"
+              alt="European College"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
+            <Image
+              src="/placeholder.svg?height=80&width=150"
+              alt="Club Deportivo"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
+            <Image
+              src="/placeholder.svg?height=80&width=150"
+              alt="Universidad Andrés Bello"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
           </div>
         </section>
 
         <section id="expositores" className="exhibitors">
-          <h3>Cronograma de Expositores</h3>
+          <h3 className="cronograma-titulo">Cronograma de Expositores</h3>
 
           <div className="day-tabs">
             {[1, 2, 3].map((day) => (
-              <button key={day} className={activeDay === day ? "active" : ""} onClick={() => goToDay(day)} disabled={isAnimating}>
+              <button
+                key={day}
+                className={activeDay === day ? "active" : ""}
+                onClick={() => goToDay(day)}
+                disabled={isAnimating}
+              >
                 Día {["I", "II", "III"][day - 1]}
               </button>
             ))}
@@ -222,33 +298,64 @@ const Home: React.FC = () => {
 
           <div className="carousel-container">
             <button className="carousel-arrow prev" onClick={prevDay} aria-label="Día anterior" disabled={isAnimating}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
 
             <div className="carousel-wrapper">
               <div ref={carouselRef} className={`exhibitor-list ${slideDirection}`}>
-                {expositoresPorDia[activeDay].map((expositor, index) => (
-                  <div className="exhibitor" key={index}>
-                    <Image
-                      src={expositor.imagen || "/placeholder.svg"}
-                      alt={expositor.nombre}
-                      width={300}
-                      height={300}
-                    />
-                    <div className="exhibitor-content">
-                      <h4>{expositor.nombre}</h4>
-                      {expositor.titulo && <p className="exhibitor-title">{`"${expositor.titulo}"`}</p>}
-                      {expositor.descripcion && <p className="exhibitor-description">{expositor.descripcion}</p>}
-                    </div>
-                  </div>
-                ))}
+                {expositoresPorDia[activeDay].map((expositor, index) => {
+                  // Crear un ID para el expositor basado en su nombre
+                  const expositorId = expositor.nombre
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+
+                  return (
+                    <Link href={`/expositor/${expositorId}`} key={index} className="exhibitor-link">
+                      <div className="exhibitor">
+                        <Image
+                          src={expositor.imagen || "/placeholder.svg"}
+                          alt={expositor.nombre}
+                          width={300}
+                          height={300}
+                        />
+                        <div className="exhibitor-content">
+                          <h4>{expositor.nombre}</h4>
+                          {expositor.titulo && <p className="exhibitor-title">{`"${expositor.titulo}"`}</p>}
+                          {expositor.descripcion && <p className="exhibitor-description">{expositor.descripcion}</p>}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
 
             <button className="carousel-arrow next" onClick={nextDay} aria-label="Día siguiente" disabled={isAnimating}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
             </button>
@@ -256,7 +363,13 @@ const Home: React.FC = () => {
 
           <div className="carousel-indicators">
             {Array.from({ length: totalDays }).map((_, index) => (
-              <button key={index} className={activeDay === index + 1 ? "active" : ""} onClick={() => goToDay(index + 1)} aria-label={`Ir al día ${index + 1}`} disabled={isAnimating} />
+              <button
+                key={index}
+                className={activeDay === index + 1 ? "active" : ""}
+                onClick={() => goToDay(index + 1)}
+                aria-label={`Ir al día ${index + 1}`}
+                disabled={isAnimating}
+              />
             ))}
           </div>
         </section>
@@ -270,7 +383,13 @@ const Home: React.FC = () => {
             </div>
             {[2, 3, 4].map((n) => (
               <div className="sponsor-item" key={n}>
-                <Image src={`/placeholder.svg?height=80&width=150`} alt={`Auspiciante ${n}`} className="sponsor-logo" width={150} height={80} />
+                <Image
+                  src={`/placeholder.svg?height=80&width=150`}
+                  alt={`Auspiciante ${n}`}
+                  className="sponsor-logo"
+                  width={150}
+                  height={80}
+                />
                 <p>Auspiciante {n}</p>
               </div>
             ))}
@@ -278,13 +397,36 @@ const Home: React.FC = () => {
         </section>
 
         <section className="social-media">
-          <h3>Aprende algo nuevo cada día</h3>
+          <h3>Conéctate con nosotros</h3>
           <p>
-            ¿Quieres saber más sobre el mundo de la Preparación Física? En nuestros canales compartimos estrategias,
-            videos y herramientas para que sepas cómo debes dar tus primeros pasos en el mundo de la Preparación Física
-            en Fútbol.
+            Síguenos en nuestras redes sociales para estar al tanto de las últimas novedades sobre el I Simposio
+            Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.
           </p>
-          <div className="social-icons">{/* Íconos aquí */}</div>
+          <div className="social-icons">
+            <a
+              href="https://instagram.com/simposio_futbol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <span className="sr-only">Instagram</span>
+            </a>
+          </div>
         </section>
 
         <Footer />
@@ -295,3 +437,4 @@ const Home: React.FC = () => {
 }
 
 export default Home
+

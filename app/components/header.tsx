@@ -1,9 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+  const isExpositorPage = pathname.includes("/expositor/")
 
   // Detectar scroll para cambiar estilos del header
   useEffect(() => {
@@ -22,6 +26,12 @@ const Header = () => {
   }, [])
 
   const scrollToSection = (id: string) => {
+    // Si estamos en la página de expositor, primero navegamos al inicio
+    if (isExpositorPage) {
+      window.location.href = `/#${id}`
+      return
+    }
+
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
@@ -32,7 +42,9 @@ const Header = () => {
     <header className={`fixed-header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-container">
         <div className="logo">
-          <img src="/logo.png" alt="Simposio de Fútbol" />
+          <Link href="/">
+            <img src="/logo.png" alt="Simposio de Fútbol" />
+          </Link>
         </div>
         <nav className="main-nav">
           <ul>

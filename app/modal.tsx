@@ -6,22 +6,16 @@ interface ModalProps {
   onClose: () => void
 }
 
-interface FormData {
-  nombre: string
-  email: string
-  telefono?: string
-}
-
 const Modal: React.FC<ModalProps> = ({ onClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>()
+  } = useForm()
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: any) => {
     console.log(data)
-    onClose()
+    onClose() // Cerrar el modal después de enviar
   }
 
   return (
@@ -45,7 +39,7 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             </svg>
           </button>
           <h2>Formulario de Inscripción</h2>
-          <p>Primer Simposio Internacional</p>
+          <p>I Simposio Internacional de Fútbol</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="modal-form">
@@ -81,6 +75,17 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
             <input id="telefono" type="tel" {...register("telefono")} placeholder="+1234567890" />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="motivacion">Carta de motivación (opcional):</label>
+            <textarea
+              id="motivacion"
+              {...register("motivacion")}
+              placeholder="Cuéntanos por qué quieres participar en este simposio"
+              rows={4}
+              className="w-full p-3 border border-gray-300 rounded-md"
+            ></textarea>
+          </div>
+
           <div className="form-actions">
             <button type="button" onClick={onClose} className="cancel-button">
               Cancelar
@@ -96,3 +101,4 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
 }
 
 export default Modal
+

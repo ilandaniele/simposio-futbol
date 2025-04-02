@@ -198,6 +198,12 @@ section h3 {
   flex-direction: column;
   height: 100%;
   max-width: 100%; /* Asegurar que no exceda el ancho del contenedor */
+  cursor: pointer; /* Añadir cursor pointer para indicar que es clicable */
+}
+
+.exhibitor:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .exhibitor img {
@@ -651,13 +657,32 @@ main {
   transition: all 0.3s ease;
 }
 
-.day-tabs button:hover {
+/* Modificar el hover para que no se confunda con el active */
+.day-tabs button:hover:not(.active) {
   background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilo para el botón activo similar al botón de inscripción */
 .day-tabs button.active {
   background-color: #0a4d8c;
   color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive para los botones de día */
+@media (max-width: 768px) {
+  .day-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .day-tabs button {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .day-info {
@@ -880,5 +905,480 @@ main {
     width: 16px;
     height: 16px;
   }
+}
+
+/* Añadir estos estilos para las nuevas secciones */
+
+/* Sección de certificación */
+.certification {
+  background-color: white;
+  padding: 4rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+}
+
+.certification-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.certification-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.certification-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.certificate-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.certification h4 {
+  color: #0a4d8c;
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.certification ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.certification li {
+  margin-bottom: 0.5rem;
+}
+
+.deadline-info {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  border-left: 4px solid #facc15;
+  margin-top: 1.5rem;
+}
+
+/* Sección de biografías */
+.bio-section {
+  background-color: #f8f9fa;
+  padding: 4rem 1rem;
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.bio-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.bio-card h4 {
+  color: #0a4d8c;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #facc15;
+  padding-bottom: 0.5rem;
+}
+
+.bio-card p {
+  color: #555;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Responsive para las nuevas secciones */
+@media (max-width: 768px) {
+  .certification-content {
+    flex-direction: column;
+  }
+
+  .bio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para la página de detalle del expositor */
+.expositor-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.expositor-back-button {
+  display: inline-flex;
+  align-items: center;
+  color: #0a4d8c;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
+}
+
+.expositor-back-button:hover {
+  color: #facc15;
+}
+
+.expositor-back-button svg {
+  margin-right: 0.5rem;
+}
+
+.expositor-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.expositor-header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.expositor-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .expositor-image {
+    width: 40%;
+    height: auto;
+  }
+}
+
+.expositor-info {
+  padding: 2rem;
+  flex: 1;
+}
+
+.expositor-name {
+  font-size: 2rem;
+  color: #0a4d8c;
+  margin-bottom: 0.5rem;
+}
+
+.expositor-title {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.expositor-bio {
+  color: #666;
+  line-height: 1.8;
+}
+
+.expositor-bio p {
+  margin-bottom: 1rem;
+}
+
+.expositor-social {
+  margin-top: 2rem;
+}
+
+.expositor-social a {
+  display: inline-flex;
+  align-items: center;
+  background-color: #facc15;
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.expositor-social a:hover {
+  background-color: #fde047;
+  transform: translateY(-2px);
+}
+
+.expositor-social a svg {
+  margin-right: 0.5rem;
+}
+
+/* Quitar el subrayado de los enlaces de expositores */
+.exhibitor-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Estilos para la página de detalle del expositor */
+.volver-link {
+  display: inline-flex;
+  align-items: center;
+  color: #0a4d8c;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.volver-link:hover {
+  color: #facc15;
+}
+
+.expositor-nombre {
+  font-size: 2.5rem;
+  color: #0a4d8c;
+  margin-bottom: 0.5rem;
+}
+
+.expositor-titulo {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.expositor-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.expositor-imagen-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.expositor-imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.expositor-info {
+  flex: 2;
+  min-width: 300px;
+}
+
+.expositor-info h3 {
+  font-size: 1.8rem;
+  color: #0a4d8c;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.expositor-bio-parrafo {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.expositor-redes {
+  margin-top: 2rem;
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  background-color: #facc15;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.instagram-link:hover {
+  background-color: #fde047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.expositor-ponencia {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.expositor-ponencia h3 {
+  font-size: 1.8rem;
+  color: #0a4d8c;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.ponencia-titulo {
+  font-weight: 600;
+}
+
+.ponencia-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.ponencia-cta h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #0a4d8c;
+}
+
+.inscribete-btn {
+  display: inline-block;
+  background-color: #facc15;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.inscribete-btn:hover {
+  background-color: #fde047;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .expositor-container {
+    flex-direction: column;
+  }
+
+  .expositor-nombre {
+    font-size: 2rem;
+  }
+
+  .expositor-titulo {
+    font-size: 1.2rem;
+  }
+}
+
+/* Añadir estos estilos para los cambios solicitados */
+
+/* Estilos para el título de Cronograma de Expositores */
+.cronograma-titulo {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto 2rem;
+  padding-bottom: 1rem;
+}
+
+.cronograma-titulo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #facc15;
+}
+
+/* Estilos para los botones de días */
+.day-tabs button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.day-tabs button:hover {
+  background-color: #0a4d8c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.day-tabs button.active {
+  background-color: #0a4d8c;
+  color: white;
+}
+
+/* Estilos para la página de detalle del expositor */
+.expositor-header-container {
+  margin: 0 auto 2rem;
+  text-align: center;
+  max-width: 800px;
+}
+
+.expositor-nombre {
+  font-size: 2.5rem;
+  color: #0a4d8c;
+  margin-bottom: 0.5rem;
+}
+
+.expositor-titulo {
+  font-size: 1.5rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+/* Botón de volver */
+.volver-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  color: #0a4d8c;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.volver-btn:hover {
+  background-color: #0a4d8c;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de Instagram */
+.instagram-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #facc15;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.instagram-btn:hover {
+  background-color: #fde047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
