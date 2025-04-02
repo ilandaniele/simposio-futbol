@@ -137,7 +137,7 @@ const Home: React.FC = () => {
     },
     2: {
       fecha: "2 de Mayo 2025",
-      hora: "A partir de las 16:00 hrs Uruguay",
+      hora: "A partir de las 18:00 hrs Uruguay",
     },
     3: {
       fecha: "3 de Mayo 2025",
