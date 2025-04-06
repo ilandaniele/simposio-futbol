@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react"
 import Modal from "./modal"
 import Header from "./components/header"
 import Footer from "./components/footer"
-import HeroCarousel from "./components/hero-carousel"
+import HeroCarousel from "./components/heroCarousel"
 import Image from "next/image"
 import "./globals.css"
 
@@ -36,7 +36,6 @@ const Home: React.FC = () => {
   const [activeDay, setActiveDay] = useState(1)
   const [slideDirection, setSlideDirection] = useState("")
   const [isAnimating, setIsAnimating] = useState(false)
-  const [isHovering, setIsHovering] = useState<number | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const totalDays = 3
 
@@ -173,7 +172,7 @@ const Home: React.FC = () => {
     <>
       <Header />
       <main>
-        <HeroCarousel />
+        <HeroCarousel/>
         <section id="inicio" className="main-header">
           <div className="header-presentation">
             <div className="logo-container">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 
-export default function heroCarousel() {
+export default function HeroCarousel() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [slideDirection, setSlideDirection] = useState("")
   const [isAnimating, setIsAnimating] = useState(false)
