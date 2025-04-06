@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react"
 import Modal from "./modal"
 import Header from "./components/header"
 import Footer from "./components/footer"
+import HeroCarousel from "./components/hero-carousel"
 import Image from "next/image"
 import "./globals.css"
 
@@ -20,6 +21,7 @@ interface Expositor {
   titulo: string
   descripcion: string
   imagen: string
+  imagenes?: string[] // Array de imágenes para el carrusel
 }
 
 interface Organizador {
@@ -34,6 +36,7 @@ const Home: React.FC = () => {
   const [activeDay, setActiveDay] = useState(1)
   const [slideDirection, setSlideDirection] = useState("")
   const [isAnimating, setIsAnimating] = useState(false)
+  const [isHovering, setIsHovering] = useState<number | null>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const totalDays = 3
 
@@ -90,7 +93,8 @@ const Home: React.FC = () => {
         nombre: "Gabriel Añón",
         titulo: "Introducción al Modelo de Juego",
         descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
-        imagen: "/images/gabriel-anon.jpg",
+        imagen: "/images/gabriel-anon-cut.jpg",
+        imagenes: ["/images/gabriel-anon-cut.jpg", "/images/gabriel-anon-2.jpg"],
       },
     ],
     2: [
@@ -99,19 +103,22 @@ const Home: React.FC = () => {
         titulo: "Entrenamiento y Cultura Futbolística Sudamericana: Un Método con Identidad",
         descripcion: "Preparador Físico - Entrenador selecciones juveniles Argentina. Director y creador de GRUPOEKPO.",
         imagen: "/images/enrique-cesana.png",
+        imagenes: ["/images/enrique-cesana.png", "/images/enrique-cesana-2.jpg"],
       },
       {
         nombre: "Miguel Torres",
         titulo: "Entrenamiento del Portero Adaptado al Modelo de Juego",
         descripcion: "Entrenador de Arqueros fútbol formativo Universidad de Chile. Licencia Pro ANFP Chile.",
-        imagen: "/images/miguel-torres.jpg",
+        imagen: "/images/miguel-torres-cut.jpg",
+        imagenes: ["/images/miguel-torres-cut.jpg", "/images/miguel-torres.jpg"],
       },
       {
         nombre: "Alejandro Garay",
         titulo: "Modelo de Juego en Selecciones Nacionales Juveniles",
         descripcion:
           "Entrenador selecciones juveniles Uruguay, Coordinador divisiones inferiores Montevideo Wanderers, Instructor Conmebol.",
-        imagen: "/images/alejandro-garay.jpg",
+        imagen: "/images/alejandro-garay-cut.jpg",
+        imagenes: ["/images/alejandro-garay-cut.jpg", "/images/alejandro-garay.jpg"],
       },
     ],
     3: [
@@ -127,6 +134,7 @@ const Home: React.FC = () => {
         descripcion:
           "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GEF de Conmebol.",
         imagen: "/images/gerardo-pelusso-1.jpg",
+        imagenes: ["/images/gerardo-pelusso-1.jpg", "/images/gerardo-pelusso-2.jpg"],
       },
     ],
   }
@@ -139,10 +147,10 @@ const Home: React.FC = () => {
       imagen: "/placeholder.svg?height=300&width=300&text=Aaron+Duran",
     },
     {
-      nombre: "Director del Instituto Terciario",
-      titulo: "Director",
+      nombre: "Pablo Hernández Roetti",
+      titulo: "Director del ITP",
       descripcion: "Director del Instituto Técnico Profesional de la Asociación Uruguaya de Entrenadores de Fútbol.",
-      imagen: "/placeholder.svg?height=300&width=300&text=Director+Instituto",
+      imagen: "/images/director.jpg",
     },
   ]
 
@@ -165,9 +173,17 @@ const Home: React.FC = () => {
     <>
       <Header />
       <main>
+        <HeroCarousel />
         <section id="inicio" className="main-header">
-          <h1>I Simposio Internacional de Fútbol</h1>
-          <h2>Modelo de Juego Sudamericano y sus Elementos</h2>
+          <div className="header-presentation">
+            <div className="logo-container">
+              <Image src="/logo.png" alt="Logo Simposio" width={200} height={200} />
+            </div>
+            <div className="title-container">
+              <h1>I Simposio Internacional de Fútbol</h1>
+              <h2>Modelo de Juego Sudamericano y sus Elementos</h2>
+            </div>
+          </div>
         </section>
 
         <section className="intro">
@@ -247,41 +263,8 @@ const Home: React.FC = () => {
         <section className="collaborations">
           <h3>Instituciones Colaboradoras</h3>
           <div className="sponsor-grid">
-            <Image src="/images/itp.png" alt="Colaboradores" className="sponsor-logo" width={150} height={80} />
-            <Image
-              src="/placeholder.svg?height=80&width=150"
-              alt="Universidad de Granada"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/placeholder.svg?height=80&width=150"
-              alt="Universidad Pontificia"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/placeholder.svg?height=80&width=150"
-              alt="European College"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/placeholder.svg?height=80&width=150"
-              alt="Club Deportivo"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-            <Image
-              src="/placeholder.svg?height=80&width=150"
-              alt="Universidad Andrés Bello"
-              className="sponsor-logo"
-              width={150}
-              height={80}
+            <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
+            <Image src="/images/audef.png" alt="Asociación Uruguaya de Entrenadores de Fútbol" className="sponsor-logo" width={150} height={80}
             />
           </div>
         </section>
@@ -425,24 +408,16 @@ const Home: React.FC = () => {
         </section>
 
         <section className="sponsors">
-          <h3>Auspiciantes</h3>
+          <h3>Auspicia</h3>
           <div className="sponsor-list">
             <div className="sponsor-item">
-              <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
+              <a href="https://www.ascendigitalmarketing.com" target="_blank" rel="noopener noreferrer">
+                <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
+              </a>
             </div>
-            {[2, 3, 4].map((n) => (
-              <div className="sponsor-item" key={n}>
-                <Image
-                  src={`/placeholder.svg?height=80&width=150`}
-                  alt={`Auspiciante ${n}`}
-                  className="sponsor-logo"
-                  width={150}
-                  height={80}
-                />
-              </div>
-            ))}
           </div>
         </section>
+
 
         <section className="social-media">
           <h3>Conéctate con nosotros</h3>

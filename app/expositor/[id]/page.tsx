@@ -1,11 +1,11 @@
 "use client"
 
 import { useParams, useRouter } from "next/navigation"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import Header from "../../components/header"
-import Footer from "../../components/footer"
+import Header from "../../../app/components/header"
+import Footer from "../../../app/components/footer"
 
 interface ExpositorDetalle {
   id: string
@@ -13,10 +13,11 @@ interface ExpositorDetalle {
   titulo: string
   descripcion: string
   imagen: string
+  imagenes?: string[] // Array de imágenes para el carrusel
   biografia: string
   instagram?: string
   linkedin?: string
-  tipo: string // "expositor" u "organizador"
+  tipo: string
 }
 
 const expositoresData: { [key: string]: ExpositorDetalle } = {
@@ -37,6 +38,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Introducción al Modelo de Juego",
     descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
     imagen: "/images/gabriel-anon.jpg",
+    imagenes: ["/images/gabriel-anon.jpg", "/images/gabriel-anon-2.jpg"],
     biografia:
       "Nacido el 6 de enero de 1964 en Montevideo, Uruguay, es un exfutbolista profesional y entrenador de fútbol con una destacada trayectoria tanto en su país como en el extranjero. Como jugador, se desempeñó en clubes de Uruguay, España, Ecuador y Chile, participando en competencias de alto nivel, incluyendo la Copa Libertadores.\n\nTras su retiro como futbolista, Añón inició su carrera como entrenador en 2004. Ha dirigido a varios equipos uruguayos, entre ellos Plaza Colonia, Rampla Juniors (logrando el ascenso a Primera División), Progreso y Central Español FC. En la actualidad, continúa vinculado al fútbol como docente contribuyendo al desarrollo, compartiendo su experiencia y conocimientos en la formación de nuevas generaciones de futbolistas y entrenadores uruguayos.",
     linkedin: "https://www.linkedin.com/in/gabriel-añon-a002077a/",
@@ -48,6 +50,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Entrenamiento y Cultura Futbolística Sudamericana: Un Método con Identidad",
     descripcion: "Preparador Físico - Entrenador selecciones juveniles Argentina. Director y creador de GRUPOEKPO.",
     imagen: "/images/enrique-cesana-2.jpg",
+    imagenes: ["/images/enrique-cesana.png", "/images/enrique-cesana-2.jpg"],
     biografia:
       "Destacado profesor de educación física y preparador físico argentino, reconocido por su amplia trayectoria en el ámbito del fútbol formativo y profesional. Graduado del Instituto Superior de Educación Física Nº 11 (ISEF Nº 11), Cesana ha dedicado su carrera al desarrollo y la preparación de futbolistas en diversas categorías.\n\nActualmente, se desempeña como preparador físico de la Selección Argentina Sub-17, Sub 20, colaborando estrechamente con la Asociación del Fútbol Argentino (AFA) en la formación de jóvenes talentos. Además, es el fundador y director de GrupoEkipo, una organización dedicada a la capacitación y formación de entrenadores y preparadores físicos.\n\nA lo largo de su carrera, ha ocupado diversos roles en el ámbito futbolístico, incluyendo Coordinador del Departamento de Profesores de Educación Física de la Fundación Leo Messi en Rosario y Director Deportivo del Club Tiro Federal. Ha trabajado como Preparador Físico en equipos como Rosario Central, Belgrano de Córdoba, Oriente Petrolero, Wilsterman, Guabirá y Deportivo Aurora.",
     instagram: "https://www.instagram.com/quiquecesana/",
@@ -60,6 +63,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Entrenamiento del Portero Adaptado al Modelo de Juego",
     descripcion: "Entrenador de Arqueros fútbol formativo Universidad de Chile. Licencia Pro ANFP Chile.",
     imagen: "/images/miguel-torres.jpg",
+    imagenes: ["/images/miguel-torres-cut.jpg", "/images/miguel-torres.jpg"],
     biografia:
       "Miguel Ignacio Torres Muñoz es un destacado preparador de arqueros chileno con una amplia trayectoria en el ámbito del fútbol de este país. A lo largo de su carrera, ha contribuido al desarrollo y perfeccionamiento de las habilidades técnicas y tácticas de los guardametas, demostrando un compromiso constante con el éxito de sus dirigidos.\n\nEn su rol como entrenador de arqueros, Torres ha trabajado en diversos clubes, como Real San Joaquín, Audax Italiano y en la Actualidad Universidad De Chile, aportando su experiencia y conocimientos para mejorar el rendimiento de los porteros. Su enfoque se centra en el desarrollo integral de los arqueros, abarcando aspectos técnicos, tácticos y psicológicos, lo que ha llevado a que varios de sus pupilos alcancen un alto nivel de desempeño en el fútbol profesional.",
     instagram: "https://www.instagram.com/m1guel7orres/",
@@ -73,8 +77,9 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     descripcion:
       "Entrenador selecciones juveniles Uruguay, Coordinador divisiones inferiores Montevideo Wanderers, Instructor Conmebol.",
     imagen: "/images/alejandro-garay.jpg",
+    imagenes: ["/images/alejandro-garay-cut.jpg", "/images/alejandro-garay.jpg"],
     biografia:
-      "Su carrera como director técnico comenzó en 1987, después de que una lesión a los 26 años lo apartara de las canchas como jugador. Desde entonces, ha trabajado en diversos clubes uruguayos, incluyendo Cerro, Rentistas, El Tanque, Danubio y Nacional. En 2010, se unió al proceso de selecciones juveniles de Uruguay liderado por Óscar Tabárez.\n\nGaray es reconocido por la formación de grandes futbolistas uruguayos, enfatizando la importancia de inculcar valores y habilidades tanto dentro como fuera del campo. En enero de 2022, tras más de una década de servicio, finalizó su vínculo con las selecciones juveniles de Uruguay. A pesar de su salida, su legado en la formación de jóvenes futbolistas continúa siendo una referencia en el ámbito deportivo uruguayo. En la actualidad es el Jefe de divisiones inferiores de Montevideo Wanderers, además docente e instructor conmebol.",
+      "Su carrera como director técnico comenzó en 1987, después de que una lesión a los 26 años lo apartara de las canchas como jugador. Desde entonces, ha trabajado en diversos clubes uruguayos, incluyendo Cerro, Rentistas, El Tanque, Danubio y Nacional. En 2010, se unió al proceso de selecciones juveniles de Uruguay liderado por Óscar Tabárez.\n\nGaray es reconocido por la formación de grandes futbolistas uruguayos, enfatizando la importancia de inculcar valores y habilidades tanto dentro como fuera del campo. En enero de 2022, tras más de una década de servicio, finalizó su vínculo con las selecciones juven  En enero de 2022, tras más de una década de servicio, finalizó su vínculo con las selecciones juveniles de Uruguay. A pesar de su salida, su legado en la formación de jóvenes futbolistas continúa siendo una referencia en el ámbito deportivo uruguayo. En la actualidad es el Jefe de divisiones inferiores de Montevideo Wanderers, además docente e instructor conmebol.",
     instagram: "https://www.instagram.com/alegar105/",
     tipo: "expositor",
   },
@@ -94,6 +99,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     descripcion:
       "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GEF de Conmebol.",
     imagen: "/images/gerardo-pelusso-2.jpg",
+    imagenes: ["/images/gerardo-pelusso-1.jpg", "/images/gerardo-pelusso-2.jpg"],
     biografia:
       "Oriundo de Florida, Uruguay. Inició su carrera como entrenador en 1984 con Emelec. Su trayectoria incluye la dirección técnica de grandes equipos en Uruguay, Perú, Chile, Paraguay y Colombia. Entre sus logros más destacados se encuentran: Campeón del Campeonato Uruguayo de Primera División en 2004 con Danubio FC, Campeón del Torneo Peruano en 2006 con Alianza Lima, Campeón del Campeonato Uruguayo de Primera División 2008-09 con Nacional, Semifinales Copa Libertadores 2010 con Universidad de Chile, Campeón del Torneo Clausura en 2011 con Olimpia, y Campeón de la Copa Sudamericana en 2015 con Independiente Santa Fe.\n\nEn 2020, a los 66 años, Pelusso anunció su retiro de la dirección técnica, dejando una huella importante e imborrable como gran entrenador en el fútbol sudamericano. Actualmente, comparte su experiencia y conocimientos en favor del desarrollo en el fútbol sudamericano como embajador de Conmebol y responsable del GET (Grupo Estudios Técnicos) de Conmebol.",
     instagram: "https://www.instagram.com/gerardopelussook/",
@@ -115,6 +121,10 @@ export default function ExpositorPage() {
   const params = useParams()
   const router = useRouter()
   const [expositor, setExpositor] = useState<ExpositorDetalle | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [previousImageIndex, setPreviousImageIndex] = useState(0)
+  const [slideDirection, setSlideDirection] = useState("")
+  const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
     const id = params.id as string
@@ -124,6 +134,47 @@ export default function ExpositorPage() {
       router.push("/")
     }
   }, [params.id, router])
+
+  // Configurar el carrusel automático de imágenes
+  useEffect(() => {
+    if (expositor?.imagenes && expositor.imagenes.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setPreviousImageIndex(currentImageIndex)
+        const nextIndex = (currentImageIndex + 1) % expositor.imagenes!.length
+        setSlideDirection("slide-left")
+        setCurrentImageIndex(nextIndex)
+      }, 10000) // Cambiado a 10 segundos
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [expositor, currentImageIndex])
+
+  // Agregar función para cambiar la imagen al hacer clic en los indicadores
+  const handleDotClick = (index: number) => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+
+    if (index === currentImageIndex) return
+
+    setPreviousImageIndex(currentImageIndex)
+    setSlideDirection(index > currentImageIndex ? "slide-left" : "slide-right")
+    setCurrentImageIndex(index)
+
+    // Reiniciar el intervalo después de cambiar manualmente
+    if (expositor?.imagenes && expositor.imagenes.length > 1) {
+      intervalRef.current = setInterval(() => {
+        setPreviousImageIndex(currentImageIndex)
+        const nextIndex = (currentImageIndex + 1) % expositor.imagenes!.length
+        setSlideDirection("slide-left")
+        setCurrentImageIndex(nextIndex)
+      }, 10000)
+    }
+  }
 
   if (!expositor) {
     return (
@@ -173,13 +224,33 @@ export default function ExpositorPage() {
 
           <div className="expositor-container">
             <div className="expositor-imagen-container">
-              <Image
-                src={expositor.imagen || "/placeholder.svg"}
-                alt={expositor.nombre}
-                width={400}
-                height={400}
-                className="expositor-imagen"
-              />
+              {expositor.imagenes && expositor.imagenes.length > 1 ? (
+                <div className="expositor-carousel">
+                  <img
+                    src={expositor.imagenes[currentImageIndex] || "/placeholder.svg"}
+                    alt={expositor.nombre}
+                    className="expositor-imagen"
+                  />
+                  <div className="carousel-indicators-small">
+                    {expositor.imagenes.map((_, index) => (
+                      <span
+                        key={index}
+                        className={`carousel-dot ${currentImageIndex === index ? "active" : ""}`}
+                        onClick={() => handleDotClick(index)}
+                        style={{ cursor: "pointer" }}
+                      ></span>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Image
+                  src={expositor.imagen || "/placeholder.svg"}
+                  alt={expositor.nombre}
+                  width={400}
+                  height={400}
+                  className="expositor-imagen"
+                />
+              )}
             </div>
 
             <div className="expositor-info">
