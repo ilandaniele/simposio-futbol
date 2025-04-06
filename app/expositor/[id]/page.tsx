@@ -38,7 +38,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Introducción al Modelo de Juego",
     descripcion: "Entrenador de fútbol Uruguayo Licencia Pro y docente especializado en técnica y táctica.",
     imagen: "/images/gabriel-anon.jpg",
-    imagenes: ["/images/gabriel-anon.jpg", "/images/gabriel-anon-2.jpg"],
+    imagenes: ["/images/gabriel-anon.jpg"],
     biografia:
       "Nacido el 6 de enero de 1964 en Montevideo, Uruguay, es un exfutbolista profesional y entrenador de fútbol con una destacada trayectoria tanto en su país como en el extranjero. Como jugador, se desempeñó en clubes de Uruguay, España, Ecuador y Chile, participando en competencias de alto nivel, incluyendo la Copa Libertadores.\n\nTras su retiro como futbolista, Añón inició su carrera como entrenador en 2004. Ha dirigido a varios equipos uruguayos, entre ellos Plaza Colonia, Rampla Juniors (logrando el ascenso a Primera División), Progreso y Central Español FC. En la actualidad, continúa vinculado al fútbol como docente contribuyendo al desarrollo, compartiendo su experiencia y conocimientos en la formación de nuevas generaciones de futbolistas y entrenadores uruguayos.",
     linkedin: "https://www.linkedin.com/in/gabriel-añon-a002077a/",
@@ -105,12 +105,12 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     instagram: "https://www.instagram.com/gerardopelussook/",
     tipo: "expositor",
   },
-  "director-del-instituto-terciario": {
-    id: "director-del-instituto-terciario",
-    nombre: "Director del Instituto Terciario",
-    titulo: "Director",
+  "pablo-hernandez-roetti": {
+    id: "pablo-hernandez-roetti",
+    nombre: "Pablo Hernández Roetti",
+    titulo: "Director del ITP",
     descripcion: "Director del Instituto Técnico Profesional de la Asociación Uruguaya de Entrenadores de Fútbol.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Director+Instituto",
+    imagen: "/images/director.jpg",
     biografia:
       "Director del Instituto Técnico Profesional de la Asociación Uruguaya de Entrenadores de Fútbol, responsable de la certificación académica del I Simposio Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.",
     tipo: "organizador",
