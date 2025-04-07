@@ -158,7 +158,6 @@ export default function ExpositorPage() {
     if (isAnimating || !expositor?.imagenes) return
 
     setIsAnimating(true)
-    setPreviousImageIndex(currentImageIndex)
     setSlideDirection("slide-left")
 
     setTimeout(() => {
@@ -176,7 +175,6 @@ export default function ExpositorPage() {
     if (isAnimating || !expositor?.imagenes) return
 
     setIsAnimating(true)
-    setPreviousImageIndex(currentImageIndex)
     setSlideDirection("slide-right")
 
     setTimeout(() => {
@@ -195,7 +193,6 @@ export default function ExpositorPage() {
     if (isAnimating || index === currentImageIndex || !expositor?.imagenes) return
 
     setIsAnimating(true)
-    setPreviousImageIndex(currentImageIndex)
     const direction = index > currentImageIndex ? "slide-left" : "slide-right"
     setSlideDirection(direction)
 
