@@ -96,7 +96,7 @@ const Home: React.FC = () => {
         imagenes: ["/images/gabriel-anon-cut.jpg", "/images/gabriel-anon-2.jpg"],
       },
       {
-        nombre: "Ivan Stirk",
+        nombre: "Iván Stirk",
         titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
         descripcion:
           "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
@@ -177,7 +177,7 @@ const Home: React.FC = () => {
 
         <section id="inicio" className="intro-section">
           <div className="intro-content">
-            <h3 className="intro-quote">"El modelo de juego es la esencia del entrenador."</h3>
+            <h3 className="intro-quote">{`"El modelo de juego es la esencia del entrenador."`}</h3>
 
             <div className="intro-text">
               <p>
