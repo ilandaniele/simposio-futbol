@@ -7,7 +7,6 @@ import Image from "next/image"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isExpositorPage = pathname.includes("/expositor/")
 
@@ -28,9 +27,6 @@ const Header = () => {
   }, [])
 
   const scrollToSection = (id: string) => {
-    // Cerrar el menú móvil si está abierto
-    setIsMobileMenuOpen(false)
-
     // Si estamos en la página de expositor, primero navegamos al inicio
     if (isExpositorPage) {
       window.location.href = `/#${id}`
