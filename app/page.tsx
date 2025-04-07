@@ -95,6 +95,13 @@ const Home: React.FC = () => {
         imagen: "/images/gabriel-anon-cut.jpg",
         imagenes: ["/images/gabriel-anon-cut.jpg", "/images/gabriel-anon-2.jpg"],
       },
+      {
+        nombre: "Ivan Stirk",
+        titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
+        descripcion:
+          "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
+        imagen: "/images/ivan-stirk.jpg",
+      }
     ],
     2: [
       {
@@ -121,12 +128,6 @@ const Home: React.FC = () => {
       },
     ],
     3: [
-      {
-        nombre: "Ivan Stirk",
-        titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
-        descripcion: "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
-        imagen: "/images/ivan-stirk.jpg",
-      },
       {
         nombre: "Gerardo Pelusso",
         titulo: "Construcción de un Modelo de Juego: Un Camino de Aprendizaje y Experiencia",
@@ -172,37 +173,26 @@ const Home: React.FC = () => {
     <>
       <Header />
       <main>
-        <HeroCarousel/>
-        <section id="inicio" className="main-header">
-          <div className="header-presentation">
-            <div className="logo-container">
-              <Image src="/logo.png" alt="Logo Simposio" width={200} height={200} />
-            </div>
-            <div className="title-container">
-              <h1>I Simposio Internacional de Fútbol</h1>
-              <h2>Modelo de Juego Sudamericano y sus Elementos</h2>
+        <HeroCarousel />
+
+        <section id="inicio" className="intro-section">
+          <div className="intro-content">
+            <h3 className="intro-quote">"El modelo de juego es la esencia del entrenador."</h3>
+
+            <div className="intro-text">
+              <p>
+                Este simposio está pensado para quienes buscan transformar sus ideas en un modelo claro, coherente y
+                aplicable.
+              </p>
+              <p>
+                Invitamos a todos los entrenadores sudamericanos a ser parte de este espacio de reflexión, construcción
+                e intercambio.
+              </p>
+              <p className="highlight-text">
+                Una oportunidad única para seguir construyendo el futuro del fútbol sudamericano.
+              </p>
             </div>
           </div>
-        </section>
-
-        <section className="intro">
-          <h3>El fútbol sudamericano: pasión, creatividad y talento</h3>
-          <p>
-            El fútbol sudamericano siempre ha sido sinónimo de pasión, creatividad y talento. Sin embargo, en un mundo
-            cada vez más competitivo, es fundamental evolucionar y consolidar un modelo de juego que combine nuestra
-            identidad histórica con estrategias modernas.
-          </p>
-          <p>
-            Este simposio surge de la necesidad de brindar a los entrenadores un camino claro para estructurar y aplicar
-            sus ideas en el desarrollo del juego. Cuando un entrenador obtiene su titulación, posee una gran cantidad de
-            conocimientos teóricos y conceptos en su mente, pero muchas veces enfrenta dificultades para traducirlos en
-            una metodología práctica y coherente.
-          </p>
-          <p>
-            Este simposio reúne a profesionales expertos en todas las áreas del fútbol, para compartir conocimientos y
-            experiencias con el fin de fortalecer el desarrollo del modelo de juego propio de nuestra región
-            sudamericana.
-          </p>
         </section>
 
         <section id="inscripcion" className="registration-hero">
@@ -263,7 +253,12 @@ const Home: React.FC = () => {
           <h3>Instituciones Colaboradoras</h3>
           <div className="sponsor-grid">
             <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
-            <Image src="/images/audef.png" alt="Asociación Uruguaya de Entrenadores de Fútbol" className="sponsor-logo" width={150} height={80}
+            <Image
+              src="/images/audef.png"
+              alt="Asociación Uruguaya de Entrenadores de Fútbol"
+              className="sponsor-logo"
+              width={150}
+              height={80}
             />
           </div>
         </section>
@@ -416,7 +411,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </section>
-
 
         <section className="social-media">
           <h3>Conéctate con nosotros</h3>

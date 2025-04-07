@@ -27,7 +27,7 @@ export default function HeroCarousel() {
     "/images/campeones del mundo/15.png",
     "/images/campeones del mundo/16.png",
     "/images/campeones del mundo/17.png",
-    "/images/campeones del mundo/18.png"
+    "/images/campeones del mundo/18.png",
   ]
 
   // Auto-rotate images every 10 seconds
@@ -56,11 +56,18 @@ export default function HeroCarousel() {
 
   return (
     <section className="world-champions-carousel">
-      {/* Título fijo superpuesto */}
+      {/* Título fijo superpuesto con logo a la izquierda */}
       <div className="fixed-hero-content">
-        <div className="hero-subtitle">- PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL -</div>
-        <h1 className="hero-title">Modelo de Juego Sudamericano</h1>
-        <h2 className="hero-subtitle-large">y sus Elementos</h2>
+        <div className="hero-header-presentation">
+          <div className="hero-logo-container">
+            <Image src="/logo.png" alt="Logo Simposio" width={200} height={200} className="hero-logo" />
+          </div>
+          <div className="hero-title-container">
+            <div className="hero-subtitle">- PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL -</div>
+            <h1 className="hero-title">Modelo de Juego Sudamericano</h1>
+            <h2 className="hero-subtitle-large">y sus Elementos</h2>
+          </div>
+        </div>
       </div>
 
       <div className="carousel-container">
@@ -75,10 +82,10 @@ export default function HeroCarousel() {
                 className="champion-image"
                 priority
               />
-              <div className="champion-overlay">
+              {/* <div className="champion-overlay">
                 <h3>Campeones del Mundo</h3>
                 <p>Inspiración para el fútbol sudamericano</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
