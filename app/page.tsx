@@ -109,7 +109,7 @@ const Home: React.FC = () => {
         titulo: "Entrenamiento del Portero Adaptado al Modelo de Juego",
         descripcion: "Entrenador de Arqueros fútbol formativo Universidad de Chile. Licencia Pro ANFP Chile.",
         imagen: "/images/miguel-torres-cut.jpg",
-        imagenes: ["/images/miguel-torres-cut.jpg", "/images/miguel-torres.jpg"],
+        imagenes: ["/images/miguel-torres-cut.jpg"],
       },
       {
         nombre: "Alejandro Garay",
@@ -117,15 +117,15 @@ const Home: React.FC = () => {
         descripcion:
           "Entrenador selecciones juveniles Uruguay, Coordinador divisiones inferiores Montevideo Wanderers, Instructor Conmebol.",
         imagen: "/images/alejandro-garay-cut.jpg",
-        imagenes: ["/images/alejandro-garay-cut.jpg", "/images/alejandro-garay.jpg"],
+        imagenes: ["/images/alejandro-garay-cut.jpg"],
       },
     ],
     3: [
       {
-        nombre: "Por confirmar",
-        titulo: "",
-        descripcion: "",
-        imagen: "/placeholder.svg?height=300&width=300&text=Por+Confirmar",
+        nombre: "Ivan Stirk",
+        titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
+        descripcion: "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
+        imagen: "/images/ivan-stirk.jpg",
       },
       {
         nombre: "Gerardo Pelusso",
@@ -143,7 +143,7 @@ const Home: React.FC = () => {
       nombre: "Aaron Duran",
       titulo: "Organizador y Moderador",
       descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
-      imagen: "/placeholder.svg?height=300&width=300&text=Aaron+Duran",
+      imagen: "/images/aaron-duran-5.jpeg",
     },
     {
       nombre: "Pablo Hernández Roetti",
@@ -268,7 +268,7 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        <section id="organizadores" className="exhibitors">
+        <section id="organizadores" className="organizators">
           <h3 className="section-title">Organizadores</h3>
           <div className="carousel-container">
             <div className="carousel-wrapper">

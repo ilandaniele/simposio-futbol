@@ -26,7 +26,8 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     nombre: "Aaron Duran",
     titulo: "Organizador y Moderador",
     descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
-    imagen: "/placeholder.svg?height=300&width=300&text=Aaron+Duran",
+    imagen: "/images/aaron-duran-5.jpeg",
+    imagenes: ["/images/aaron-duran.jpeg", "/images/aaron-duran-2.jpeg", "/images/aaron-duran-3.jpeg", "/images/aaron-duran-4.jpeg", "/images/aaron-duran-5.jpeg"],
     biografia:
       "Entrenador de Futbol Licencia Pro AUDEF, Kinesiólogo de alto rendimiento. Organizador y moderador del I Simposio Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.",
     linkedin: "https://www.linkedin.com/in/aaron-alberto-duran-morales-505980219/",
@@ -83,12 +84,13 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     instagram: "https://www.instagram.com/alegar105/",
     tipo: "expositor",
   },
-  "por-confirmar": {
-    id: "por-confirmar",
-    nombre: "Por confirmar",
-    titulo: "",
-    descripcion: "",
-    imagen: "/placeholder.svg?height=300&width=300&text=Por+Confirmar",
+  "ivan-stirk": {
+    id: "ivan-stirk",
+    nombre: "Ivan Stirk",
+    titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
+    descripcion: "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
+    imagen: "/images/ivan-stirk.jpg",
+    imagenes: ["/images/ivan-stirk.jpg", "/images/ivan-stirk-2.jpg"],
     biografia: "Información pendiente de confirmación.",
     tipo: "expositor",
   },
@@ -124,6 +126,7 @@ export default function ExpositorPage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [previousImageIndex, setPreviousImageIndex] = useState(0)
   const [slideDirection, setSlideDirection] = useState("")
+  const [isAnimating, setIsAnimating] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
@@ -139,10 +142,9 @@ export default function ExpositorPage() {
   useEffect(() => {
     if (expositor?.imagenes && expositor.imagenes.length > 1) {
       intervalRef.current = setInterval(() => {
-        setPreviousImageIndex(currentImageIndex)
-        const nextIndex = (currentImageIndex + 1) % expositor.imagenes!.length
-        setSlideDirection("slide-left")
-        setCurrentImageIndex(nextIndex)
+        if (!isAnimating) {
+          nextImage()
+        }
       }, 10000) // Cambiado a 10 segundos
     }
 
@@ -151,29 +153,61 @@ export default function ExpositorPage() {
         clearInterval(intervalRef.current)
       }
     }
-  }, [expositor, currentImageIndex])
+  }, [expositor, currentImageIndex, isAnimating])
+
+  const nextImage = () => {
+    if (isAnimating || !expositor?.imagenes) return
+
+    setIsAnimating(true)
+    setPreviousImageIndex(currentImageIndex)
+    setSlideDirection("slide-left")
+
+    setTimeout(() => {
+      const nextIndex = (currentImageIndex + 1) % expositor.imagenes!.length
+      setCurrentImageIndex(nextIndex)
+      setSlideDirection("slide-in-right")
+
+      setTimeout(() => {
+        setIsAnimating(false)
+      }, 500)
+    }, 500)
+  }
+
+  const prevImage = () => {
+    if (isAnimating || !expositor?.imagenes) return
+
+    setIsAnimating(true)
+    setPreviousImageIndex(currentImageIndex)
+    setSlideDirection("slide-right")
+
+    setTimeout(() => {
+      const prevIndex = currentImageIndex === 0 ? expositor.imagenes!.length - 1 : currentImageIndex - 1
+      setCurrentImageIndex(prevIndex)
+      setSlideDirection("slide-in-left")
+
+      setTimeout(() => {
+        setIsAnimating(false)
+      }, 500)
+    }, 500)
+  }
 
   // Agregar función para cambiar la imagen al hacer clic en los indicadores
   const handleDotClick = (index: number) => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-    }
+    if (isAnimating || index === currentImageIndex || !expositor?.imagenes) return
 
-    if (index === currentImageIndex) return
-
+    setIsAnimating(true)
     setPreviousImageIndex(currentImageIndex)
-    setSlideDirection(index > currentImageIndex ? "slide-left" : "slide-right")
-    setCurrentImageIndex(index)
+    const direction = index > currentImageIndex ? "slide-left" : "slide-right"
+    setSlideDirection(direction)
 
-    // Reiniciar el intervalo después de cambiar manualmente
-    if (expositor?.imagenes && expositor.imagenes.length > 1) {
-      intervalRef.current = setInterval(() => {
-        setPreviousImageIndex(currentImageIndex)
-        const nextIndex = (currentImageIndex + 1) % expositor.imagenes!.length
-        setSlideDirection("slide-left")
-        setCurrentImageIndex(nextIndex)
-      }, 10000)
-    }
+    setTimeout(() => {
+      setCurrentImageIndex(index)
+      setSlideDirection(index > currentImageIndex ? "slide-in-right" : "slide-in-left")
+
+      setTimeout(() => {
+        setIsAnimating(false)
+      }, 500)
+    }, 500)
   }
 
   if (!expositor) {
@@ -226,11 +260,61 @@ export default function ExpositorPage() {
             <div className="expositor-imagen-container">
               {expositor.imagenes && expositor.imagenes.length > 1 ? (
                 <div className="expositor-carousel">
-                  <img
-                    src={expositor.imagenes[currentImageIndex] || "/placeholder.svg"}
-                    alt={expositor.nombre}
-                    className="expositor-imagen"
-                  />
+                  <div className={`carousel-slide ${slideDirection}`}>
+                    <img
+                      src={expositor.imagenes[currentImageIndex] || "/placeholder.svg"}
+                      alt={expositor.nombre}
+                      className="expositor-imagen"
+                    />
+                  </div>
+
+                  {/* Controles de navegación */}
+                  {expositor.imagenes.length > 1 && (
+                    <>
+                      <button
+                        className="carousel-arrow prev"
+                        onClick={prevImage}
+                        aria-label="Imagen anterior"
+                        disabled={isAnimating}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                      </button>
+
+                      <button
+                        className="carousel-arrow next"
+                        onClick={nextImage}
+                        aria-label="Imagen siguiente"
+                        disabled={isAnimating}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+
                   <div className="carousel-indicators-small">
                     {expositor.imagenes.map((_, index) => (
                       <span
