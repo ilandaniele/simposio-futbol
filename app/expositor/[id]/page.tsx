@@ -124,7 +124,6 @@ export default function ExpositorPage() {
   const router = useRouter()
   const [expositor, setExpositor] = useState<ExpositorDetalle | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [previousImageIndex, setPreviousImageIndex] = useState(0)
   const [slideDirection, setSlideDirection] = useState("")
   const [isAnimating, setIsAnimating] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
