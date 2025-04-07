@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
   const isExpositorPage = pathname.includes("/expositor/")
 
@@ -26,6 +28,9 @@ const Header = () => {
   }, [])
 
   const scrollToSection = (id: string) => {
+    // Cerrar el menú móvil si está abierto
+    setIsMobileMenuOpen(false)
+
     // Si estamos en la página de expositor, primero navegamos al inicio
     if (isExpositorPage) {
       window.location.href = `/#${id}`
@@ -43,9 +48,10 @@ const Header = () => {
       <div className="header-container">
         <div className="logo">
           <Link href="/">
-            <img src="/logo.png" alt="Simposio de Fútbol" />
+            <Image src="/logo.png" alt="Simposio de Fútbol" width={50} height={50} />
           </Link>
         </div>
+
         <nav className="main-nav">
           <ul>
             <li>
