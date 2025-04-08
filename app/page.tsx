@@ -132,7 +132,7 @@ const Home: React.FC = () => {
         nombre: "Gerardo Pelusso",
         titulo: "Construcción de un Modelo de Juego: Un Camino de Aprendizaje y Experiencia",
         descripcion:
-          "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GEF de Conmebol.",
+          "Entrenador multicampeón de Sudamérica, dirigió equipos como Nacional de Uruguay, Olimpia de Paraguay, Universidad de Chile, Independiente de Santa Fe, entre otros. Además de la Selección de Paraguay. Actualmente forma parte del GET de Conmebol.",
         imagen: "/images/gerardo-pelusso-1.jpg",
         imagenes: ["/images/gerardo-pelusso-1.jpg", "/images/gerardo-pelusso-2.jpg"],
       },
