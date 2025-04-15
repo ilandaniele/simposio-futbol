@@ -10,24 +10,24 @@ export default function HeroCarousel() {
 
   // Images of world champions
   const championImages = [
-    "/images/campeones del mundo/1.png",
-    "/images/campeones del mundo/2.png",
-    "/images/campeones del mundo/3.png",
-    "/images/campeones del mundo/4.png",
-    "/images/campeones del mundo/5.png",
-    "/images/campeones del mundo/6.png",
+    "/images/campeones del mundo/1.jpg",
+    "/images/campeones del mundo/2.jpg",
+    "/images/campeones del mundo/3.jpg",
+    "/images/campeones del mundo/4.jpg",
+    "/images/campeones del mundo/5.jpg",
+    "/images/campeones del mundo/6.jpg",
     "/images/campeones del mundo/7.png",
-    "/images/campeones del mundo/8.png",
-    "/images/campeones del mundo/9.png",
-    "/images/campeones del mundo/10.png",
-    "/images/campeones del mundo/11.png",
-    "/images/campeones del mundo/12.png",
-    "/images/campeones del mundo/13.png",
-    "/images/campeones del mundo/14.png",
-    "/images/campeones del mundo/15.png",
-    "/images/campeones del mundo/16.png",
-    "/images/campeones del mundo/17.png",
-    "/images/campeones del mundo/18.png",
+    "/images/campeones del mundo/8.jpg",
+    "/images/campeones del mundo/9.jpg",
+    "/images/campeones del mundo/10.jpg",
+    "/images/campeones del mundo/11.jpg",
+    "/images/campeones del mundo/12.jpg",
+    "/images/campeones del mundo/13.jpg",
+    "/images/campeones del mundo/14.jpg",
+    "/images/campeones del mundo/15.jpg",
+    "/images/campeones del mundo/16.jpg",
+    "/images/campeones del mundo/17.jpg",
+    "/images/campeones del mundo/18.jpg",
   ]
 
   // Auto-rotate images every 10 seconds
@@ -60,10 +60,10 @@ export default function HeroCarousel() {
       <div className="fixed-hero-content">
         <div className="hero-header-presentation">
           <div className="hero-logo-container">
-            <Image src="/logo.png" alt="Logo Simposio" width={200} height={200} className="hero-logo" />
+            <Image src="/logo.png" alt="Logo Simposio" width={150} height={150} className="hero-logo" />
           </div>
           <div className="hero-title-container">
-            <div className="hero-subtitle">- PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL -</div>
+            <div className="hero-subtitle">PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL</div>
             <h1 className="hero-title">Modelo de Juego Sudamericano</h1>
             <h2 className="hero-subtitle-large">y sus Elementos</h2>
           </div>
@@ -74,18 +74,11 @@ export default function HeroCarousel() {
         <div className="carousel-wrapper">
           <div className={`carousel-content ${slideDirection}`}>
             <div className="champion-image-container">
-              <Image
+              <img
                 src={championImages[currentImageIndex] || "/placeholder.svg"}
                 alt="Campeones del Mundo"
-                width={1920}
-                height={800}
                 className="champion-image"
-                priority
               />
-              {/* <div className="champion-overlay">
-                <h3>Campeones del Mundo</h3>
-                <p>Inspiración para el fútbol sudamericano</p>
-              </div> */}
             </div>
           </div>
         </div>
@@ -93,4 +86,3 @@ export default function HeroCarousel() {
     </section>
   )
 }
-

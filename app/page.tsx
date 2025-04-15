@@ -101,7 +101,7 @@ const Home: React.FC = () => {
         descripcion:
           "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
         imagen: "/images/ivan-stirk.jpg",
-      }
+      },
     ],
     2: [
       {
@@ -211,96 +211,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        <section className="certification">
-          <h3>Certificación y Modalidades de Participación</h3>
-          <div className="certification-content">
-            <div className="certification-info">
-              <h4 className="certification-subtitle">Certificado de Participación</h4>
-              <p>
-                Todos los participantes inscritos recibirán un certificado validado por el Instituto Técnico Profesional
-                de la Asociación Uruguaya de Entrenadores de Fútbol, válido para incluir en tu CV profesional.
-              </p>
-              <h4 className="certification-subtitle">Modalidades de Participación</h4>
-              <ul className="certification-list">
-                <li>
-                  <strong>Zoom:</strong> Cupos limitados (80 aproximadamente). Los participantes podrán interactuar
-                  directamente con los expositores.
-                </li>
-                <li>
-                  <strong>YouTube:</strong> Transmisión abierta a todo público. Para obtener el certificado es necesario
-                  inscribirse a través del formulario.
-                </li>
-              </ul>
-              <div className="deadline-info">
-                <p>
-                  <strong>Fecha límite de inscripción:</strong> 24 horas antes del inicio del simposio.
-                </p>
-              </div>
-            </div>
-            <div className="certification-image">
-              <Image
-                src="/images/certificado.jpg"
-                alt="Certificado de Participación"
-                width={400}
-                height={300}
-                className="certificate-img"
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="collaborations">
-          <h3>Instituciones Colaboradoras</h3>
-          <div className="sponsor-grid">
-            <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
-            <Image
-              src="/images/audef.png"
-              alt="Asociación Uruguaya de Entrenadores de Fútbol"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-          </div>
-        </section>
-
-        <section id="organizadores" className="organizators">
-          <h3 className="section-title">Organizadores</h3>
-          <div className="carousel-container">
-            <div className="carousel-wrapper">
-              <div className="carousel-content">
-                {organizadores.map((organizador, index) => {
-                  // Crear un ID para el organizador basado en su nombre
-                  const organizadorId = organizador.nombre
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-
-                  return (
-                    <Link href={`/expositor/${organizadorId}`} key={index} className="exhibitor-link">
-                      <div className="exhibitor">
-                        <img
-                          src={organizador.imagen || "/placeholder.svg"}
-                          alt={organizador.nombre}
-                          width={300}
-                          height={300}
-                        />
-                        <div className="exhibitor-content">
-                          <h4>{organizador.nombre}</h4>
-                          {organizador.titulo && <p className="exhibitor-title">{`"${organizador.titulo}"`}</p>}
-                          {organizador.descripcion && (
-                            <p className="exhibitor-description">{organizador.descripcion}</p>
-                          )}
-                        </div>
-                      </div>
-                    </Link>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section id="expositores" className="exhibitors">
           <h3 className="section-title">Cronograma de Expositores</h3>
 
@@ -318,9 +228,10 @@ const Home: React.FC = () => {
           </div>
 
           <div className="day-info">
-            <p className="day-date">
-              {diasInfo[activeDay].fecha} - {diasInfo[activeDay].hora}
-            </p>
+            <div className="day-date-elegant">
+              <span className="day-date">{diasInfo[activeDay].fecha}</span>
+              <span className="day-time">{diasInfo[activeDay].hora}</span>
+            </div>
           </div>
 
           <div className="carousel-container">
@@ -401,47 +312,147 @@ const Home: React.FC = () => {
           </div>
         </section>
 
+        <section className="certification">
+          <h3>Certificación y Modalidades de Participación</h3>
+          <div className="certification-content">
+            <div className="certification-info">
+              <h4 className="certification-subtitle">Certificado de Participación</h4>
+              <p>
+                Todos los participantes inscritos recibirán un certificado validado por el Instituto Técnico Profesional
+                de la Asociación Uruguaya de Entrenadores de Fútbol, válido para incluir en tu CV profesional.
+              </p>
+              <h4 className="certification-subtitle">Modalidades de Participación</h4>
+              <ul className="certification-list">
+                <li>
+                  <strong>Zoom:</strong> Cupos limitados (80 aproximadamente). Los participantes podrán interactuar
+                  directamente con los expositores.
+                </li>
+                <li>
+                  <strong>YouTube:</strong> Transmisión abierta a todo público. Para obtener el certificado es necesario
+                  inscribirse a través del formulario.
+                </li>
+              </ul>
+              <div className="deadline-info">
+                <p>
+                  <strong>Fecha límite de inscripción:</strong> 24 horas antes del inicio del simposio.
+                </p>
+              </div>
+            </div>
+            <div className="certification-image">
+              <Image
+                src="/images/certificado.jpg"
+                alt="Certificado de Participación"
+                width={400}
+                height={300}
+                className="certificate-img"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section id="organizadores" className="organizators">
+          <h3 className="section-title">Organizadores</h3>
+          <div className="carousel-container">
+            <div className="carousel-wrapper">
+              <div className="carousel-content">
+                {organizadores.map((organizador, index) => {
+                  // Crear un ID para el organizador basado en su nombre
+                  const organizadorId = organizador.nombre
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+
+                  return (
+                    <Link href={`/expositor/${organizadorId}`} key={index} className="exhibitor-link">
+                      <div className="exhibitor">
+                        <img
+                          src={organizador.imagen || "/placeholder.svg"}
+                          alt={organizador.nombre}
+                          width={300}
+                          height={300}
+                        />
+                        <div className="exhibitor-content">
+                          <h4>{organizador.nombre}</h4>
+                          {organizador.titulo && <p className="exhibitor-title">{`"${organizador.titulo}"`}</p>}
+                          {organizador.descripcion && (
+                            <p className="exhibitor-description">{organizador.descripcion}</p>
+                          )}
+                        </div>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="sponsors">
           <h3>Auspicia</h3>
-          <div className="sponsor-list">
-            <div className="sponsor-item">
-              <a href="https://www.ascendigitalmarketing.com" target="_blank" rel="noopener noreferrer">
-                <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
-              </a>
-            </div>
+          <div className="sponsor-grid">
+            <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
+            <Image
+              src="/images/audef.png"
+              alt="Asociación Uruguaya de Entrenadores de Fútbol"
+              className="sponsor-logo"
+              width={150}
+              height={80}
+            />
+            <a href="https://www.ascendigitalmarketing.com" target="_blank" rel="noopener noreferrer">
+              <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
+            </a>
           </div>
         </section>
 
         <section className="social-media">
           <h3>Conéctate con nosotros</h3>
           <p>
-            Síguenos en nuestras redes sociales para estar al tanto de las últimas novedades sobre el I Simposio
-            Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.
+            ¿Tienes alguna pregunta o comentario sobre el Primer Simposio Internacional de Fútbol? Estamos aquí para
+            ayudarte.
           </p>
-          <div className="social-icons">
-            <a
-              href="https://instagram.com/simposio_futbol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="social-icon instagram"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+          <div className="social-buttons-container">
+            <div className="social-buttons">
+              <a
+                href="https://instagram.com/simposio_futbol"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-button"
+                aria-label="Instagram"
               >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-              <span className="sr-only">Instagram</span>
-            </a>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="mailto:simposiofutbol@gmail.com" className="social-button" aria-label="Enviar correo">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -453,4 +464,3 @@ const Home: React.FC = () => {
 }
 
 export default Home
-

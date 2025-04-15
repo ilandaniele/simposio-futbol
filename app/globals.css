@@ -1338,14 +1338,16 @@ main {
   max-width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #000;
   position: relative;
+  height: 620px;
+  overflow: hidden;
+  background-color: #000;
 }
 
 .world-champions-carousel .carousel-container {
   position: relative;
   width: 100%;
-  height: 600px; /* Increased height */
+  height: 620px;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -1365,22 +1367,28 @@ main {
   transition: transform 0.5s ease;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .world-champions-carousel .champion-image-container {
   position: relative;
+  height: 620px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  background-color: #000;
 }
 
 .world-champions-carousel .champion-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  margin: 0;
-  padding: 0;
+  height: 620px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Nuevo estilo para el contenido superpuesto en el hero */
@@ -1407,6 +1415,7 @@ main {
   justify-content: center;
   gap: 2rem;
   width: 100%;
+  padding: 0 20px;
 }
 
 .hero-logo-container {
@@ -1415,10 +1424,6 @@ main {
 
 .hero-logo {
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
-}
-
-.hero-title-container {
-  text-align: left;
 }
 
 .hero-subtitle {
@@ -1456,12 +1461,12 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   text-align: center;
-  padding: 2rem;
-  z-index: 5; /* Asegura que esté por encima de las imágenes pero debajo de los controles */
-  pointer-events: none; /* Permite que los clics pasen a través del texto a los controles */
+  padding: 0;
+  z-index: 5;
+  pointer-events: none;
 }
 
 .world-champions-carousel .carousel-container {
@@ -1533,7 +1538,10 @@ main {
     font-size: 1.8rem;
   }
 
-  .world-champions-carousel .carousel-container {
+  .world-champions-carousel,
+  .world-champions-carousel .carousel-container,
+  .world-champions-carousel .champion-image-container,
+  .world-champions-carousel .champion-image {
     height: 500px;
   }
 }
@@ -1551,7 +1559,10 @@ main {
     font-size: 1.5rem;
   }
 
-  .world-champions-carousel .carousel-container {
+  .world-champions-carousel,
+  .world-champions-carousel .carousel-container,
+  .world-champions-carousel .champion-image-container,
+  .world-champions-carousel .champion-image {
     height: 400px;
   }
 }
@@ -1619,3 +1630,175 @@ main {
   }
 }
 
+/* Estilos para el botón de contacto por email */
+.contact-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #facc15;
+  color: #000;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.contact-button:hover {
+  background-color: #fde047;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-button svg {
+  margin-right: 0.5rem;
+}
+
+/*
+Añadir estilos para los botones de contacto uno al lado del otro .contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+*/
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #facc15;
+  color: #1a1a1a;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.social-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para los botones sociales en línea */
+.social-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-direction: row;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #facc15;
+  color: #1a1a1a;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la fecha elegante */
+.day-date-elegant {
+  text-align: center;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  display: inline-block;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.day-date {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0a4d8c;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.day-time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #495057;
+}
+
+@media (max-width: 768px) {
+  .day-date {
+    font-size: 1.3rem;
+  }
+
+  .day-time {
+    font-size: 1rem;
+  }
+}
+
+/* Ajustar la presentación del hero para que no tape la foto */
+.fixed-hero-content {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.hero-header-presentation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.hero-logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-title {
+  font-size: 2.8rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+}
+
+.hero-subtitle-large {
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .hero-header-presentation {
+    flex-direction: column;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle-large {
+    font-size: 1.5rem;
+  }
+}
