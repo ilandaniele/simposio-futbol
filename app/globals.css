@@ -21,6 +21,226 @@ h6 {
   margin-bottom: 0.5em;
 }
 
+/* World Champions Carousel Styles - Updated */
+.world-champions-carousel {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 1100px;
+  overflow: visible; /* Allow content to extend beyond */
+  background-color: #000;
+}
+
+.world-champions-carousel .carousel-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1100px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+.world-champions-carousel .carousel-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.world-champions-carousel .carousel-content {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.world-champions-carousel .champion-image-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.world-champions-carousel .champion-image {
+  height: 100%;
+  width: auto; /* Width will adjust based on height */
+  object-fit: contain; /* Changed from cover to contain */
+  display: block;
+  margin: 0 auto;
+  opacity: 0.6;
+}
+
+/* Hero content overlay styles */
+.hero-content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  z-index: 5;
+}
+
+.hero-logo-circle {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+.hero-subtitle-small {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+}
+
+.hero-subtitle-large {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #facc15;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-separator {
+  width: 180px;
+  height: 3px;
+  background-color: #facc15;
+  margin: 1.5rem auto;
+}
+
+/* Content box styles */
+.hero-content-box {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 70%;
+  margin: 1rem auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
+}
+
+.yellow-line {
+  height: 2px;
+  background-color: #facc15;
+  width: 150px;
+  margin: 1rem auto;
+}
+
+.hero-quote {
+  color: #0a4d8c;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: italic;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.hero-intro-text {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.hero-intro-text p {
+  margin-bottom: 1rem;
+}
+
+.hero-blue-text {
+  color: #0a4d8c;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle-large {
+    font-size: 1.8rem;
+  }
+
+  .hero-quote {
+    font-size: 1rem;
+  }
+
+  .hero-content-box {
+    padding: 1rem;
+    width: 85%;
+  }
+
+  .hero-blue-text {
+    font-size: 1rem;
+  }
+
+  .world-champions-carousel .champion-image {
+    height: 100%;
+    width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-subtitle-small {
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle-large {
+    font-size: 1.5rem;
+  }
+
+  .hero-quote {
+    font-size: 0.9rem;
+  }
+
+  .yellow-line {
+    width: 120px;
+  }
+
+  .hero-content-box {
+    width: 90%;
+    padding: 1rem 0.75rem;
+  }
+}
+
 /* Estilos del encabezado */
 .main-header {
   text-align: center;
@@ -117,26 +337,6 @@ section h3 {
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   background-color: white;
-}
-
-.intro-quote {
-  font-size: 2rem;
-  font-style: italic;
-  color: #0a4d8c;
-  margin-bottom: 2rem;
-  position: relative;
-  padding-bottom: 1rem;
-}
-
-.intro-quote::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background-color: #facc15;
 }
 
 .intro-text {
@@ -275,22 +475,49 @@ section h3 {
 
 /* Modificar el espacio entre los logos de instituciones colaboradoras */
 .sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.sponsor-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
-  margin-top: 2rem;
 }
 
 .sponsor-logo {
   max-width: 150px;
   height: auto;
 }
+
+@media (max-width: 768px) {
+  .sponsor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sponsor-item:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .sponsor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsor-item:last-child {
+    grid-column: auto;
+  }
+}
 /* Sección de organizadores */
 .organizators {
   background-color: #f8f9fa;
   padding: 4rem 1rem;
-  max-height: 600px;
+  margin-bottom: 3rem; /* Added margin to create space between sections */
 }
 
 /* Sección de expositores */
@@ -610,6 +837,8 @@ section h3 {
 /* Sección de auspiciantes */
 .sponsors {
   background-color: #f0f0f0;
+  padding: 3rem 1rem;
+  margin-top: 3rem; /* Added margin to create space between sections */
 }
 
 .sponsor-list {
@@ -868,7 +1097,7 @@ section h3 {
   }
 
   .sponsor-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .day-tabs {
@@ -1333,303 +1562,6 @@ main {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* World Champions Carousel Styles */
-.world-champions-carousel {
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  height: 620px;
-  overflow: hidden;
-  background-color: #000;
-}
-
-.world-champions-carousel .carousel-container {
-  position: relative;
-  width: 100%;
-  height: 620px;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.world-champions-carousel .carousel-wrapper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.world-champions-carousel .carousel-content {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.world-champions-carousel .champion-image-container {
-  position: relative;
-  height: 620px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: #000;
-}
-
-.world-champions-carousel .champion-image {
-  height: 620px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Nuevo estilo para el contenido superpuesto en el hero */
-.hero-content-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-  padding: 2rem;
-}
-
-/* Estilos para el header con logo a la izquierda en el hero */
-.hero-header-presentation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  width: 100%;
-  padding: 0 20px;
-}
-
-.hero-logo-container {
-  flex-shrink: 0;
-}
-
-.hero-logo {
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
-}
-
-.hero-subtitle {
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: 2px;
-  margin-bottom: 1.5rem;
-  color: white;
-}
-
-.hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-subtitle-large {
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #facc15;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Nuevo estilo para el contenido fijo del hero */
-.fixed-hero-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  text-align: center;
-  padding: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.world-champions-carousel .carousel-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  z-index: 1;
-}
-
-.world-champions-carousel .carousel-arrow,
-.world-champions-carousel .carousel-indicators {
-  z-index: 10; /* Asegura que los controles estén por encima del texto fijo */
-  position: relative;
-}
-
-.world-champions-carousel .carousel-arrow {
-  position: absolute;
-  pointer-events: auto; /* Asegura que los botones sean clickeables */
-}
-
-.carousel-indicators {
-  position: relative;
-  pointer-events: auto; /* Asegura que los indicadores sean clickeables */
-}
-
-.world-champions-carousel .champion-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem 2rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
-  color: white;
-  text-align: left;
-}
-
-.world-champions-carousel .champion-overlay h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #facc15;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-  text-align: left;
-}
-
-.world-champions-carousel .champion-overlay p {
-  font-size: 1rem;
-  margin: 0;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-@media (max-width: 768px) {
-  .hero-header-presentation {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .hero-title-container {
-    text-align: center;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle-large {
-    font-size: 1.8rem;
-  }
-
-  .world-champions-carousel,
-  .world-champions-carousel .carousel-container,
-  .world-champions-carousel .champion-image-container,
-  .world-champions-carousel .champion-image {
-    height: 500px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle-large {
-    font-size: 1.5rem;
-  }
-
-  .world-champions-carousel,
-  .world-champions-carousel .carousel-container,
-  .world-champions-carousel .champion-image-container,
-  .world-champions-carousel .champion-image {
-    height: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .organizators {
-    padding: 4rem 1rem;
-    max-height: 100%;
-  }
-
-  .exhibitors {
-    padding: 4rem 1rem;
-    max-height: 100%;
-  }
-
-  .header-container {
-    padding: 0.5rem 1rem;
-  }
-
-  .logo {
-    flex: 0 0 auto;
-  }
-
-  .main-nav {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-  }
-
-  .main-nav ul {
-    gap: 0.8rem;
-    justify-content: center;
-  }
-
-  .main-nav button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.6rem;
-  }
-
-  .nav-cta {
-    padding: 0.4rem 0.8rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container {
-    padding: 0.5rem 0.8rem;
-  }
-
-  .logo img {
-    height: 40px;
-  }
-
-  .main-nav ul {
-    gap: 0.5rem;
-  }
-
-  .main-nav button {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.5rem;
-  }
-
-  .nav-cta {
-    padding: 0.3rem 0.6rem !important;
-  }
-}
-
 /* Estilos para el botón de contacto por email */
 .contact-button-container {
   display: flex;
@@ -1753,52 +1685,5 @@ Añadir estilos para los botones de contacto uno al lado del otro .contact-butto
 
   .day-time {
     font-size: 1rem;
-  }
-}
-
-/* Ajustar la presentación del hero para que no tape la foto */
-.fixed-hero-content {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin: 0 auto;
-}
-
-.hero-header-presentation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.hero-logo {
-  max-width: 100%;
-  height: auto;
-}
-
-.hero-title {
-  font-size: 2.8rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-}
-
-.hero-subtitle-large {
-  font-size: 2rem;
-}
-
-@media (max-width: 768px) {
-  .hero-header-presentation {
-    flex-direction: column;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle-large {
-    font-size: 1.5rem;
   }
 }

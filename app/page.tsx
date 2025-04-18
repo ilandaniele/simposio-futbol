@@ -175,25 +175,7 @@ const Home: React.FC = () => {
       <main>
         <HeroCarousel />
 
-        <section id="inicio" className="intro-section">
-          <div className="intro-content">
-            <h3 className="intro-quote">{`"El modelo de juego es la esencia del entrenador."`}</h3>
-
-            <div className="intro-text">
-              <p>
-                Este simposio está pensado para quienes buscan transformar sus ideas en un modelo claro, coherente y
-                aplicable.
-              </p>
-              <p>
-                Invitamos a todos los entrenadores sudamericanos a ser parte de este espacio de reflexión, construcción
-                e intercambio.
-              </p>
-              <p className="highlight-text">
-                Una oportunidad única para seguir construyendo el futuro del fútbol sudamericano.
-              </p>
-            </div>
-          </div>
-        </section>
+        
 
         <section id="inscripcion" className="registration-hero">
           <div className="registration-content">
@@ -391,17 +373,23 @@ const Home: React.FC = () => {
         <section className="sponsors">
           <h3>Auspicia</h3>
           <div className="sponsor-grid">
-            <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
-            <Image
-              src="/images/audef.png"
-              alt="Asociación Uruguaya de Entrenadores de Fútbol"
-              className="sponsor-logo"
-              width={150}
-              height={80}
-            />
-            <a href="https://www.ascendigitalmarketing.com" target="_blank" rel="noopener noreferrer">
-              <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
-            </a>
+            <div className="sponsor-item">
+              <Image src="/images/itp.png" alt="Insituto Terciario" className="sponsor-logo" width={150} height={80} />
+            </div>
+            <div className="sponsor-item">
+              <Image
+                src="/images/audef.png"
+                alt="Asociación Uruguaya de Entrenadores de Fútbol"
+                className="sponsor-logo"
+                width={150}
+                height={80}
+              />
+            </div>
+            <div className="sponsor-item">
+              <a href="https://www.ascendigitalmarketing.com" target="_blank" rel="noopener noreferrer">
+                <Image src="/ascend.png" alt="Ascend" className="sponsor-logo" width={150} height={80} />
+              </a>
+            </div>
           </div>
         </section>
 

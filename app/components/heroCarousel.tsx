@@ -55,21 +55,45 @@ export default function HeroCarousel() {
   }
 
   return (
-    <section className="world-champions-carousel">
-      {/* Título fijo superpuesto con logo a la izquierda */}
-      <div className="fixed-hero-content">
-        <div className="hero-header-presentation">
-          <div className="hero-logo-container">
-            <Image src="/logo.png" alt="Logo Simposio" width={150} height={150} className="hero-logo" />
-          </div>
-          <div className="hero-title-container">
-            <div className="hero-subtitle">PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL</div>
-            <h1 className="hero-title">Modelo de Juego Sudamericano</h1>
-            <h2 className="hero-subtitle-large">y sus Elementos</h2>
+    <section id="inicio" className="world-champions-carousel">
+      {/* Content overlay with white box */}
+      <div className="hero-content-overlay">
+        <div className="hero-logo-circle">
+          <Image src="/logo.png" alt="Logo Simposio" width={200} height={200} className="hero-logo" />
+        </div>
+        <div className="hero-subtitle-small">PRIMER SIMPOSIO INTERNACIONAL DE FÚTBOL</div>
+        <h1 className="hero-title">
+          Modelo de Juego
+          <br />
+          Sudamericano
+        </h1>
+        <h2 className="hero-subtitle-large">y sus Elementos</h2>
+
+        <div className="hero-separator"></div>
+
+        {/* White content box */}
+        <div className="hero-content-box">
+          <div className="hero-quote">"El modelo de juego es la esencia del entrenador."</div>
+          <div className="yellow-line"></div>
+
+          <div className="hero-intro-text">
+            <p>
+              Este simposio está pensado para quienes buscan transformar sus ideas en un modelo claro, coherente y
+              aplicable.
+            </p>
+            <p>
+              Invitamos a todos los entrenadores sudamericanos a ser parte de este espacio de reflexión, construcción e
+              intercambio.
+            </p>
+
+            <div className="hero-blue-text">
+              Una oportunidad única para seguir construyendo el futuro del fútbol sudamericano.
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Background carousel */}
       <div className="carousel-container">
         <div className="carousel-wrapper">
           <div className={`carousel-content ${slideDirection}`}>
