@@ -73,7 +73,7 @@ export default function HeroCarousel() {
 
         {/* White content box */}
         <div className="hero-content-box">
-          <div className="hero-quote">"El modelo de juego es la esencia del entrenador."</div>
+          <div className="hero-quote">{`"El modelo de juego es la esencia del entrenador."`}</div>
           <div className="yellow-line"></div>
 
           <div className="hero-intro-text">
