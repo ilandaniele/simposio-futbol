@@ -99,7 +99,7 @@ const Home: React.FC = () => {
         nombre: "Iván Stirk",
         titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
         descripcion:
-          "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
+          "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, Gestión deportiva también en selección de nicaragua.",
         imagen: "/images/ivan-stirk.jpg",
       },
     ],
@@ -144,7 +144,7 @@ const Home: React.FC = () => {
       nombre: "Aaron Duran",
       titulo: "Organizador y Moderador",
       descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
-      imagen: "/images/aaron-duran-5.jpeg",
+      imagen: "/images/aaron-duran-6.jpg",
     },
     {
       nombre: "Pablo Hernández Roetti",

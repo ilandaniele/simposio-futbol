@@ -27,7 +27,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Organizador y Moderador",
     descripcion: "Entrenador de Fútbol Licencia Pro AUDEF. Kinesiólogo de alto rendimiento.",
     imagen: "/images/aaron-duran-5.jpeg",
-    imagenes: ["/images/aaron-duran.jpeg", "/images/aaron-duran-2.jpeg", "/images/aaron-duran-3.jpeg", "/images/aaron-duran-4.jpeg", "/images/aaron-duran-5.jpeg"],
+    imagenes: ["/images/aaron-duran.jpeg", "/images/aaron-duran-2.jpeg", "/images/aaron-duran-3.jpeg", "/images/aaron-duran-4.jpeg", "/images/aaron-duran-5.jpeg", "/images/aaron-duran-6.jpg","/images/aaron-duran-7.jpg", "/images/aaron-duran-8.jpg" ],
     biografia:
       "Entrenador de Futbol Licencia Pro AUDEF, Kinesiólogo de alto rendimiento. Organizador y moderador del I Simposio Internacional de Fútbol: Modelo de Juego Sudamericano y sus Elementos.",
     linkedin: "https://www.linkedin.com/in/aaron-alberto-duran-morales-505980219/",
@@ -64,7 +64,7 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     titulo: "Entrenamiento del Portero Adaptado al Modelo de Juego",
     descripcion: "Entrenador de Arqueros fútbol formativo Universidad de Chile. Licencia Pro ANFP Chile.",
     imagen: "/images/miguel-torres.jpg",
-    imagenes: ["/images/miguel-torres-cut.jpg", "/images/miguel-torres.jpg"],
+    imagenes: ["/images/miguel-torres.jpg", "/images/miguel-torres-2.png", "/images/miguel-torres-3.png", "/images/miguel-torres-4.jpeg", "/images/miguel-torres-5.jpeg"],
     biografia:
       "Miguel Ignacio Torres Muñoz es un destacado preparador de arqueros chileno con una amplia trayectoria en el ámbito del fútbol de este país. A lo largo de su carrera, ha contribuido al desarrollo y perfeccionamiento de las habilidades técnicas y tácticas de los guardametas, demostrando un compromiso constante con el éxito de sus dirigidos.\n\nEn su rol como entrenador de arqueros, Torres ha trabajado en diversos clubes, como Real San Joaquín, Audax Italiano y en la Actualidad Universidad De Chile, aportando su experiencia y conocimientos para mejorar el rendimiento de los porteros. Su enfoque se centra en el desarrollo integral de los arqueros, abarcando aspectos técnicos, tácticos y psicológicos, lo que ha llevado a que varios de sus pupilos alcancen un alto nivel de desempeño en el fútbol profesional.",
     instagram: "https://www.instagram.com/m1guel7orres/",
@@ -88,10 +88,10 @@ const expositoresData: { [key: string]: ExpositorDetalle } = {
     id: "ivan-stirk",
     nombre: "Ivan Stirk",
     titulo: "Influencia de la Gestión Deportiva en la Consolidación del Modelo de Juego",
-    descripcion: "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, además formo parte del Cuerpo técnico selección de Nicaragua.",
+    descripcion: "Director deportivo Aucas, Gestión deportiva Atlético de San Luis, Santos Laguna, Mineros de Zacatecas, Gestión deportiva también en selección de nicaragua.",
     imagen: "/images/ivan-stirk.jpg",
     imagenes: ["/images/ivan-stirk.jpg", "/images/ivan-stirk-2.jpg"],
-    biografia: "Información pendiente de confirmación.",
+    biografia: "Iván Stirk es un director deportivo mexicano con una destacada trayectoria en el fútbol latinoamericano. Su experiencia incluye roles en clubes como Mineros de Zacatecas, TM Fútbol Club, Santos Laguna, Atlético de San Luis y la selección nacional de Nicaragua  En agosto de 2023, Stirk asumió el cargo de director deportivo en Sociedad Deportiva Aucas de Ecuador, convirtiéndose en el primer mexicano en ocupar esta posición en Sudamérica .  Bajo su liderazgo, Aucas logró importantes hitos: clasificación a la Copa Libertadores 2024, participación en la Copa Sudamericana 2025 y la primera clasificación del club a la Copa Libertadores Sub-20, donde alcanzaron el cuarto lugar del continente . Stirk es reconocido por su enfoque en el desarrollo de talento joven y su visión innovadora en la gestión deportiva, buscando posicionar a Aucas como un club formador y exportador de jugadores a nivel internacional",
     tipo: "expositor",
   },
   "gerardo-pelusso": {
