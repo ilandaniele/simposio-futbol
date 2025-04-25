@@ -1447,6 +1447,7 @@ main {
 .expositor-info {
   flex: 2;
   min-width: 300px;
+  margin-left: 30px
 }
 
 .expositor-info h3 {
